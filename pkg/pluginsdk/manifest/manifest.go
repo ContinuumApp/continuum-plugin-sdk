@@ -3,6 +3,7 @@ package manifest
 import (
 	"fmt"
 	"io/fs"
+	"os"
 
 	"google.golang.org/protobuf/encoding/protojson"
 
@@ -26,6 +27,18 @@ func MustLoad(data []byte) *pluginv1.PluginManifest {
 		panic(err)
 	}
 	return manifest
+}
+
+func LoadFromDisk(path string) (*pluginv1.PluginManifest, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("read plugin manifest %q: %w", path, err)
+	}
+	manifest, err := Load(data)
+	if err != nil {
+		return nil, fmt.Errorf("load plugin manifest %q: %w", path, err)
+	}
+	return manifest, nil
 }
 
 func Validate(manifest *pluginv1.PluginManifest) error {
