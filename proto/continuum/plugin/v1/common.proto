@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package continuum.plugin.v1;
+
+option go_package = "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1;pluginv1";
+
+import "google/protobuf/struct.proto";
+
+message SupportedPlatform {
+  string os = 1;
+  string arch = 2;
+}
+
+message ConfigSchema {
+  string key = 1;
+  string title = 2;
+  string description = 3;
+  string json_schema = 4;
+  bool required = 5;
+}
+
+message ConfigEntry {
+  string key = 1;
+  google.protobuf.Struct value = 2;
+}
+
+message HttpRouteDescriptor {
+  string id = 1;
+  string method = 2;
+  string path = 3;
+  string access = 4;
+  bool navigable = 5;
+  string navigation_label = 6;
+  string navigation_kind = 7;
+  bool static_asset = 8;
+}
+
+message PackagedAsset {
+  string path = 1;
+  string content_type = 2;
+  string integrity = 3;
+}
+
+message CapabilityDescriptor {
+  string type = 1;
+  string id = 2;
+  string display_name = 3;
+  string description = 4;
+  repeated string subscriptions = 5;
+  repeated ConfigSchema config_schema = 6;
+  google.protobuf.Struct metadata = 7;
+}
+
+message PluginManifest {
+  string plugin_id = 1;
+  string version = 2;
+  string checksum = 3;
+  string continuum_api_version = 4;
+  repeated SupportedPlatform supported_platforms = 5;
+  repeated CapabilityDescriptor capabilities = 6;
+  repeated ConfigSchema global_config_schema = 7;
+  repeated ConfigSchema user_config_schema = 8;
+  repeated HttpRouteDescriptor http_routes = 9;
+  repeated PackagedAsset assets = 10;
+  google.protobuf.Struct metadata = 11;
+}
+
+service Runtime {
+  rpc GetManifest(GetManifestRequest) returns (GetManifestResponse);
+  rpc Configure(ConfigureRequest) returns (ConfigureResponse);
+}
+
+message GetManifestRequest {}
+
+message GetManifestResponse {
+  PluginManifest manifest = 1;
+}
+
+message ConfigureRequest {
+  repeated ConfigEntry config = 1;
+}
+
+message ConfigureResponse {}

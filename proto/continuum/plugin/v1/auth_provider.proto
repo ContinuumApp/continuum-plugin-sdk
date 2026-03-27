@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package continuum.plugin.v1;
+
+option go_package = "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1;pluginv1";
+
+import "google/protobuf/struct.proto";
+
+service AuthProvider {
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+}
+
+message AuthenticateRequest {
+  string username = 1;
+  string password = 2;
+  google.protobuf.Struct metadata = 3;
+}
+
+message AuthenticateResponse {
+  string external_subject = 1;
+  string display_name = 2;
+  string email = 3;
+  google.protobuf.Struct claims = 4;
+}
