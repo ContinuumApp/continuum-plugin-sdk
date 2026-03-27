@@ -4,6 +4,8 @@
 
 `continuum-plugin-sdk` is the public build-time contract for Go plugin authors.
 
+This repository is released as a semver-governed Go module. Third-party plugins and first-party consumers should depend on tagged releases, not on sibling repo checkouts or workspace-only overrides.
+
 The compatibility boundary includes:
 
 - protobuf messages and gRPC services under `pkg/pluginproto/continuum/plugin/v1`
@@ -15,9 +17,17 @@ The compatibility boundary includes:
 ## Versioning Rules
 
 - Treat the SDK as a semver boundary.
+- Publish semver tags from this repository and consume those tags from downstream repos.
 - Prefer additive protobuf evolution.
 - Avoid renaming or removing protobuf fields, services, or enum values in `v1`.
 - Keep plugin capability expansion additive: new functionality should arrive as new capability families or additive fields, not breaking rewrites of existing ones.
+- First-party consumers should not merge code that depends on new SDK packages or symbols until the required SDK tag exists.
+
+## Consumer Rules
+
+- `Continuum`, `continuum-plugin-tvdb`, and `continuum-plugin-tmdb` should pin released SDK tags in `go.mod`.
+- CI and release pipelines should build with `GOWORK=off` and without checking out this repo as a sibling source dependency.
+- Local `go.work` files and temporary `replace` directives are acceptable for development, but they must not be committed as the release path.
 
 ## Runtime Compatibility
 

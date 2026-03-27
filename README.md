@@ -2,6 +2,8 @@
 
 Public Go SDK for building Continuum plugins.
 
+`continuum-plugin-sdk` is the source of truth for the public plugin authoring contract. First-party consumers such as `Continuum`, `continuum-plugin-tvdb`, and `continuum-plugin-tmdb` should pin tagged semver releases from this repository in `go.mod`. Local multi-repo workspaces may use `go.work` or a temporary `replace`, but CI and release builds must resolve the SDK from a published module tag.
+
 ## Packages
 
 - `github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1`
@@ -39,6 +41,16 @@ The example plugin shows this pattern.
 ## Compatibility
 
 Compatibility and versioning expectations are documented in [`docs/compatibility.md`](docs/compatibility.md).
+
+## Releases
+
+SDK releases are cut from semver tags such as `v0.1.0` and published through GitHub Actions.
+
+- Additive public API changes belong in a new minor release.
+- Compatible fixes and documentation updates belong in a patch release.
+- Breaking public API, protobuf, or manifest contract changes require a new major version.
+
+Before downstream repos stop using local workspace overrides, the required SDK commit must be pushed and tagged here first.
 
 ## Development
 

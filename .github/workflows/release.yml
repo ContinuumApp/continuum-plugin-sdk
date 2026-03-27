@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Build example plugin
+        run: go build ./examples/hello-scheduled-task
+
+      - name: Verify tagged module can be consumed externally
+        env:
+          GOPROXY: direct
+          GONOSUMDB: github.com/ContinuumApp/*
+        run: |
+          tmpdir="$(mktemp -d)"
+          cd "$tmpdir"
+          go mod init sdk-smoke-test
+          cat <<'EOF' > main.go
+          package main
+
+          import (
+            _ "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/config"
+            _ "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/convert"
+            _ "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/manifest"
+            _ "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/runtime"
+          )
+
+          func main() {}
+          EOF
+          go get "github.com/ContinuumApp/continuum-plugin-sdk@${GITHUB_REF_NAME}"
+          go build ./...
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
