@@ -1,6 +1,7 @@
 package manifest
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/fs"
 	"os"
@@ -57,6 +58,80 @@ func Validate(manifest *pluginv1.PluginManifest) error {
 		}
 		if capability.Id == "" {
 			return fmt.Errorf("plugin capability id is required")
+		}
+	}
+	for _, schema := range manifest.GlobalConfigSchema {
+		if err := validateConfigSchema(schema); err != nil {
+			return err
+		}
+	}
+	for _, schema := range manifest.UserConfigSchema {
+		if err := validateConfigSchema(schema); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func validateConfigSchema(schema *pluginv1.ConfigSchema) error {
+	if schema == nil {
+		return nil
+	}
+	form := schema.GetAdminForm()
+	if form == nil {
+		return nil
+	}
+
+	var parsed struct {
+		Type       string `json:"type"`
+		Properties map[string]struct {
+			Type string `json:"type"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(schema.GetJsonSchema()), &parsed); err != nil {
+		return fmt.Errorf("plugin config schema %q has invalid json_schema: %w", schema.GetKey(), err)
+	}
+	if parsed.Type != "object" {
+		return fmt.Errorf("plugin config schema %q admin_form requires an object json_schema", schema.GetKey())
+	}
+
+	seen := make(map[string]struct{}, len(form.GetFields()))
+	for _, field := range form.GetFields() {
+		if field == nil {
+			continue
+		}
+		key := field.GetKey()
+		if key == "" {
+			return fmt.Errorf("plugin config schema %q admin_form field key is required", schema.GetKey())
+		}
+		if _, exists := seen[key]; exists {
+			return fmt.Errorf("plugin config schema %q admin_form field %q is duplicated", schema.GetKey(), key)
+		}
+		seen[key] = struct{}{}
+		property, ok := parsed.Properties[key]
+		if !ok {
+			return fmt.Errorf("plugin config schema %q admin_form field %q is not declared in json_schema", schema.GetKey(), key)
+		}
+		if field.GetControl() == pluginv1.AdminFormControl_ADMIN_FORM_CONTROL_SELECT && len(field.GetOptions()) == 0 {
+			return fmt.Errorf("plugin config schema %q admin_form field %q select control requires options", schema.GetKey(), key)
+		}
+		if defaultValue := field.GetDefaultValue(); defaultValue != nil {
+			switch property.Type {
+			case "boolean":
+				if _, ok := defaultValue.AsInterface().(bool); !ok {
+					return fmt.Errorf("plugin config schema %q admin_form field %q default_value must be boolean", schema.GetKey(), key)
+				}
+			case "integer", "number":
+				switch defaultValue.AsInterface().(type) {
+				case float64:
+				default:
+					return fmt.Errorf("plugin config schema %q admin_form field %q default_value must be numeric", schema.GetKey(), key)
+				}
+			case "string":
+				if _, ok := defaultValue.AsInterface().(string); !ok {
+					return fmt.Errorf("plugin config schema %q admin_form field %q default_value must be string", schema.GetKey(), key)
+				}
+			}
 		}
 	}
 	return nil

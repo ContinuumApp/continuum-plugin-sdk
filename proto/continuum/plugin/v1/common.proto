@@ -17,6 +17,42 @@ message ConfigSchema {
   string description = 3;
   string json_schema = 4;
   bool required = 5;
+  AdminFormDescriptor admin_form = 6;
+}
+
+enum AdminFormControl {
+  ADMIN_FORM_CONTROL_UNSPECIFIED = 0;
+  ADMIN_FORM_CONTROL_TEXT = 1;
+  ADMIN_FORM_CONTROL_TEXTAREA = 2;
+  ADMIN_FORM_CONTROL_PASSWORD = 3;
+  ADMIN_FORM_CONTROL_NUMBER = 4;
+  ADMIN_FORM_CONTROL_SWITCH = 5;
+  ADMIN_FORM_CONTROL_SELECT = 6;
+}
+
+message AdminFormOption {
+  string value = 1;
+  string label = 2;
+  string description = 3;
+}
+
+message AdminFormField {
+  string key = 1;
+  string label = 2;
+  string description = 3;
+  AdminFormControl control = 4;
+  string placeholder = 5;
+  bool required = 6;
+  bool secret = 7;
+  bool multiline = 8;
+  google.protobuf.Value default_value = 9;
+  repeated AdminFormOption options = 10;
+  int32 rows = 11;
+}
+
+message AdminFormDescriptor {
+  repeated AdminFormField fields = 1;
+  string submit_label = 2;
 }
 
 message ConfigEntry {

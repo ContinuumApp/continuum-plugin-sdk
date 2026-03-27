@@ -22,6 +22,67 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type AdminFormControl int32
+
+const (
+	AdminFormControl_ADMIN_FORM_CONTROL_UNSPECIFIED AdminFormControl = 0
+	AdminFormControl_ADMIN_FORM_CONTROL_TEXT        AdminFormControl = 1
+	AdminFormControl_ADMIN_FORM_CONTROL_TEXTAREA    AdminFormControl = 2
+	AdminFormControl_ADMIN_FORM_CONTROL_PASSWORD    AdminFormControl = 3
+	AdminFormControl_ADMIN_FORM_CONTROL_NUMBER      AdminFormControl = 4
+	AdminFormControl_ADMIN_FORM_CONTROL_SWITCH      AdminFormControl = 5
+	AdminFormControl_ADMIN_FORM_CONTROL_SELECT      AdminFormControl = 6
+)
+
+// Enum value maps for AdminFormControl.
+var (
+	AdminFormControl_name = map[int32]string{
+		0: "ADMIN_FORM_CONTROL_UNSPECIFIED",
+		1: "ADMIN_FORM_CONTROL_TEXT",
+		2: "ADMIN_FORM_CONTROL_TEXTAREA",
+		3: "ADMIN_FORM_CONTROL_PASSWORD",
+		4: "ADMIN_FORM_CONTROL_NUMBER",
+		5: "ADMIN_FORM_CONTROL_SWITCH",
+		6: "ADMIN_FORM_CONTROL_SELECT",
+	}
+	AdminFormControl_value = map[string]int32{
+		"ADMIN_FORM_CONTROL_UNSPECIFIED": 0,
+		"ADMIN_FORM_CONTROL_TEXT":        1,
+		"ADMIN_FORM_CONTROL_TEXTAREA":    2,
+		"ADMIN_FORM_CONTROL_PASSWORD":    3,
+		"ADMIN_FORM_CONTROL_NUMBER":      4,
+		"ADMIN_FORM_CONTROL_SWITCH":      5,
+		"ADMIN_FORM_CONTROL_SELECT":      6,
+	}
+)
+
+func (x AdminFormControl) Enum() *AdminFormControl {
+	p := new(AdminFormControl)
+	*p = x
+	return p
+}
+
+func (x AdminFormControl) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AdminFormControl) Descriptor() protoreflect.EnumDescriptor {
+	return file_continuum_plugin_v1_common_proto_enumTypes[0].Descriptor()
+}
+
+func (AdminFormControl) Type() protoreflect.EnumType {
+	return &file_continuum_plugin_v1_common_proto_enumTypes[0]
+}
+
+func (x AdminFormControl) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AdminFormControl.Descriptor instead.
+func (AdminFormControl) EnumDescriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{0}
+}
+
 type SupportedPlatform struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Os            string                 `protobuf:"bytes,1,opt,name=os,proto3" json:"os,omitempty"`
@@ -81,6 +142,7 @@ type ConfigSchema struct {
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	JsonSchema    string                 `protobuf:"bytes,4,opt,name=json_schema,json=jsonSchema,proto3" json:"json_schema,omitempty"`
 	Required      bool                   `protobuf:"varint,5,opt,name=required,proto3" json:"required,omitempty"`
+	AdminForm     *AdminFormDescriptor   `protobuf:"bytes,6,opt,name=admin_form,json=adminForm,proto3" json:"admin_form,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,6 +212,249 @@ func (x *ConfigSchema) GetRequired() bool {
 	return false
 }
 
+func (x *ConfigSchema) GetAdminForm() *AdminFormDescriptor {
+	if x != nil {
+		return x.AdminForm
+	}
+	return nil
+}
+
+type AdminFormOption struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminFormOption) Reset() {
+	*x = AdminFormOption{}
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminFormOption) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminFormOption) ProtoMessage() {}
+
+func (x *AdminFormOption) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminFormOption.ProtoReflect.Descriptor instead.
+func (*AdminFormOption) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AdminFormOption) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *AdminFormOption) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *AdminFormOption) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type AdminFormField struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Control       AdminFormControl       `protobuf:"varint,4,opt,name=control,proto3,enum=continuum.plugin.v1.AdminFormControl" json:"control,omitempty"`
+	Placeholder   string                 `protobuf:"bytes,5,opt,name=placeholder,proto3" json:"placeholder,omitempty"`
+	Required      bool                   `protobuf:"varint,6,opt,name=required,proto3" json:"required,omitempty"`
+	Secret        bool                   `protobuf:"varint,7,opt,name=secret,proto3" json:"secret,omitempty"`
+	Multiline     bool                   `protobuf:"varint,8,opt,name=multiline,proto3" json:"multiline,omitempty"`
+	DefaultValue  *structpb.Value        `protobuf:"bytes,9,opt,name=default_value,json=defaultValue,proto3" json:"default_value,omitempty"`
+	Options       []*AdminFormOption     `protobuf:"bytes,10,rep,name=options,proto3" json:"options,omitempty"`
+	Rows          int32                  `protobuf:"varint,11,opt,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminFormField) Reset() {
+	*x = AdminFormField{}
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminFormField) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminFormField) ProtoMessage() {}
+
+func (x *AdminFormField) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminFormField.ProtoReflect.Descriptor instead.
+func (*AdminFormField) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AdminFormField) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *AdminFormField) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *AdminFormField) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *AdminFormField) GetControl() AdminFormControl {
+	if x != nil {
+		return x.Control
+	}
+	return AdminFormControl_ADMIN_FORM_CONTROL_UNSPECIFIED
+}
+
+func (x *AdminFormField) GetPlaceholder() string {
+	if x != nil {
+		return x.Placeholder
+	}
+	return ""
+}
+
+func (x *AdminFormField) GetRequired() bool {
+	if x != nil {
+		return x.Required
+	}
+	return false
+}
+
+func (x *AdminFormField) GetSecret() bool {
+	if x != nil {
+		return x.Secret
+	}
+	return false
+}
+
+func (x *AdminFormField) GetMultiline() bool {
+	if x != nil {
+		return x.Multiline
+	}
+	return false
+}
+
+func (x *AdminFormField) GetDefaultValue() *structpb.Value {
+	if x != nil {
+		return x.DefaultValue
+	}
+	return nil
+}
+
+func (x *AdminFormField) GetOptions() []*AdminFormOption {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
+func (x *AdminFormField) GetRows() int32 {
+	if x != nil {
+		return x.Rows
+	}
+	return 0
+}
+
+type AdminFormDescriptor struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Fields        []*AdminFormField      `protobuf:"bytes,1,rep,name=fields,proto3" json:"fields,omitempty"`
+	SubmitLabel   string                 `protobuf:"bytes,2,opt,name=submit_label,json=submitLabel,proto3" json:"submit_label,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminFormDescriptor) Reset() {
+	*x = AdminFormDescriptor{}
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminFormDescriptor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminFormDescriptor) ProtoMessage() {}
+
+func (x *AdminFormDescriptor) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminFormDescriptor.ProtoReflect.Descriptor instead.
+func (*AdminFormDescriptor) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AdminFormDescriptor) GetFields() []*AdminFormField {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+func (x *AdminFormDescriptor) GetSubmitLabel() string {
+	if x != nil {
+		return x.SubmitLabel
+	}
+	return ""
+}
+
 type ConfigEntry struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
@@ -160,7 +465,7 @@ type ConfigEntry struct {
 
 func (x *ConfigEntry) Reset() {
 	*x = ConfigEntry{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[2]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -172,7 +477,7 @@ func (x *ConfigEntry) String() string {
 func (*ConfigEntry) ProtoMessage() {}
 
 func (x *ConfigEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[2]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -185,7 +490,7 @@ func (x *ConfigEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigEntry.ProtoReflect.Descriptor instead.
 func (*ConfigEntry) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{2}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ConfigEntry) GetKey() string {
@@ -218,7 +523,7 @@ type HttpRouteDescriptor struct {
 
 func (x *HttpRouteDescriptor) Reset() {
 	*x = HttpRouteDescriptor{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[3]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -230,7 +535,7 @@ func (x *HttpRouteDescriptor) String() string {
 func (*HttpRouteDescriptor) ProtoMessage() {}
 
 func (x *HttpRouteDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[3]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -243,7 +548,7 @@ func (x *HttpRouteDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HttpRouteDescriptor.ProtoReflect.Descriptor instead.
 func (*HttpRouteDescriptor) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{3}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *HttpRouteDescriptor) GetId() string {
@@ -313,7 +618,7 @@ type PackagedAsset struct {
 
 func (x *PackagedAsset) Reset() {
 	*x = PackagedAsset{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[4]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -325,7 +630,7 @@ func (x *PackagedAsset) String() string {
 func (*PackagedAsset) ProtoMessage() {}
 
 func (x *PackagedAsset) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[4]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +643,7 @@ func (x *PackagedAsset) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PackagedAsset.ProtoReflect.Descriptor instead.
 func (*PackagedAsset) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{4}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PackagedAsset) GetPath() string {
@@ -377,7 +682,7 @@ type CapabilityDescriptor struct {
 
 func (x *CapabilityDescriptor) Reset() {
 	*x = CapabilityDescriptor{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[5]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -389,7 +694,7 @@ func (x *CapabilityDescriptor) String() string {
 func (*CapabilityDescriptor) ProtoMessage() {}
 
 func (x *CapabilityDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[5]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -402,7 +707,7 @@ func (x *CapabilityDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CapabilityDescriptor.ProtoReflect.Descriptor instead.
 func (*CapabilityDescriptor) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{5}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CapabilityDescriptor) GetType() string {
@@ -473,7 +778,7 @@ type PluginManifest struct {
 
 func (x *PluginManifest) Reset() {
 	*x = PluginManifest{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[6]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -485,7 +790,7 @@ func (x *PluginManifest) String() string {
 func (*PluginManifest) ProtoMessage() {}
 
 func (x *PluginManifest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[6]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -498,7 +803,7 @@ func (x *PluginManifest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PluginManifest.ProtoReflect.Descriptor instead.
 func (*PluginManifest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{6}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PluginManifest) GetPluginId() string {
@@ -586,7 +891,7 @@ type GetManifestRequest struct {
 
 func (x *GetManifestRequest) Reset() {
 	*x = GetManifestRequest{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[7]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -598,7 +903,7 @@ func (x *GetManifestRequest) String() string {
 func (*GetManifestRequest) ProtoMessage() {}
 
 func (x *GetManifestRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[7]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -611,7 +916,7 @@ func (x *GetManifestRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetManifestRequest.ProtoReflect.Descriptor instead.
 func (*GetManifestRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{7}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{10}
 }
 
 type GetManifestResponse struct {
@@ -623,7 +928,7 @@ type GetManifestResponse struct {
 
 func (x *GetManifestResponse) Reset() {
 	*x = GetManifestResponse{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[8]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -635,7 +940,7 @@ func (x *GetManifestResponse) String() string {
 func (*GetManifestResponse) ProtoMessage() {}
 
 func (x *GetManifestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[8]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -648,7 +953,7 @@ func (x *GetManifestResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetManifestResponse.ProtoReflect.Descriptor instead.
 func (*GetManifestResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{8}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetManifestResponse) GetManifest() *PluginManifest {
@@ -667,7 +972,7 @@ type ConfigureRequest struct {
 
 func (x *ConfigureRequest) Reset() {
 	*x = ConfigureRequest{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[9]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -679,7 +984,7 @@ func (x *ConfigureRequest) String() string {
 func (*ConfigureRequest) ProtoMessage() {}
 
 func (x *ConfigureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[9]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -692,7 +997,7 @@ func (x *ConfigureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureRequest.ProtoReflect.Descriptor instead.
 func (*ConfigureRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{9}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ConfigureRequest) GetConfig() []*ConfigEntry {
@@ -710,7 +1015,7 @@ type ConfigureResponse struct {
 
 func (x *ConfigureResponse) Reset() {
 	*x = ConfigureResponse{}
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[10]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -722,7 +1027,7 @@ func (x *ConfigureResponse) String() string {
 func (*ConfigureResponse) ProtoMessage() {}
 
 func (x *ConfigureResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_common_proto_msgTypes[10]
+	mi := &file_continuum_plugin_v1_common_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -735,7 +1040,7 @@ func (x *ConfigureResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfigureResponse.ProtoReflect.Descriptor instead.
 func (*ConfigureResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{10}
+	return file_continuum_plugin_v1_common_proto_rawDescGZIP(), []int{13}
 }
 
 var File_continuum_plugin_v1_common_proto protoreflect.FileDescriptor
@@ -745,14 +1050,36 @@ const file_continuum_plugin_v1_common_proto_rawDesc = "" +
 	" continuum/plugin/v1/common.proto\x12\x13continuum.plugin.v1\x1a\x1cgoogle/protobuf/struct.proto\"7\n" +
 	"\x11SupportedPlatform\x12\x0e\n" +
 	"\x02os\x18\x01 \x01(\tR\x02os\x12\x12\n" +
-	"\x04arch\x18\x02 \x01(\tR\x04arch\"\x95\x01\n" +
+	"\x04arch\x18\x02 \x01(\tR\x04arch\"\xde\x01\n" +
 	"\fConfigSchema\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1f\n" +
 	"\vjson_schema\x18\x04 \x01(\tR\n" +
 	"jsonSchema\x12\x1a\n" +
-	"\brequired\x18\x05 \x01(\bR\brequired\"N\n" +
+	"\brequired\x18\x05 \x01(\bR\brequired\x12G\n" +
+	"\n" +
+	"admin_form\x18\x06 \x01(\v2(.continuum.plugin.v1.AdminFormDescriptorR\tadminForm\"_\n" +
+	"\x0fAdminFormOption\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\tR\x05value\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xa0\x03\n" +
+	"\x0eAdminFormField\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12?\n" +
+	"\acontrol\x18\x04 \x01(\x0e2%.continuum.plugin.v1.AdminFormControlR\acontrol\x12 \n" +
+	"\vplaceholder\x18\x05 \x01(\tR\vplaceholder\x12\x1a\n" +
+	"\brequired\x18\x06 \x01(\bR\brequired\x12\x16\n" +
+	"\x06secret\x18\a \x01(\bR\x06secret\x12\x1c\n" +
+	"\tmultiline\x18\b \x01(\bR\tmultiline\x12;\n" +
+	"\rdefault_value\x18\t \x01(\v2\x16.google.protobuf.ValueR\fdefaultValue\x12>\n" +
+	"\aoptions\x18\n" +
+	" \x03(\v2$.continuum.plugin.v1.AdminFormOptionR\aoptions\x12\x12\n" +
+	"\x04rows\x18\v \x01(\x05R\x04rows\"u\n" +
+	"\x13AdminFormDescriptor\x12;\n" +
+	"\x06fields\x18\x01 \x03(\v2#.continuum.plugin.v1.AdminFormFieldR\x06fields\x12!\n" +
+	"\fsubmit_label\x18\x02 \x01(\tR\vsubmitLabel\"N\n" +
 	"\vConfigEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x05value\"\xfe\x01\n" +
@@ -796,7 +1123,15 @@ const file_continuum_plugin_v1_common_proto_rawDesc = "" +
 	"\bmanifest\x18\x01 \x01(\v2#.continuum.plugin.v1.PluginManifestR\bmanifest\"L\n" +
 	"\x10ConfigureRequest\x128\n" +
 	"\x06config\x18\x01 \x03(\v2 .continuum.plugin.v1.ConfigEntryR\x06config\"\x13\n" +
-	"\x11ConfigureResponse2\xc7\x01\n" +
+	"\x11ConfigureResponse*\xf2\x01\n" +
+	"\x10AdminFormControl\x12\"\n" +
+	"\x1eADMIN_FORM_CONTROL_UNSPECIFIED\x10\x00\x12\x1b\n" +
+	"\x17ADMIN_FORM_CONTROL_TEXT\x10\x01\x12\x1f\n" +
+	"\x1bADMIN_FORM_CONTROL_TEXTAREA\x10\x02\x12\x1f\n" +
+	"\x1bADMIN_FORM_CONTROL_PASSWORD\x10\x03\x12\x1d\n" +
+	"\x19ADMIN_FORM_CONTROL_NUMBER\x10\x04\x12\x1d\n" +
+	"\x19ADMIN_FORM_CONTROL_SWITCH\x10\x05\x12\x1d\n" +
+	"\x19ADMIN_FORM_CONTROL_SELECT\x10\x062\xc7\x01\n" +
 	"\aRuntime\x12`\n" +
 	"\vGetManifest\x12'.continuum.plugin.v1.GetManifestRequest\x1a(.continuum.plugin.v1.GetManifestResponse\x12Z\n" +
 	"\tConfigure\x12%.continuum.plugin.v1.ConfigureRequest\x1a&.continuum.plugin.v1.ConfigureResponseB[ZYgithub.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1;pluginv1b\x06proto3"
@@ -813,43 +1148,54 @@ func file_continuum_plugin_v1_common_proto_rawDescGZIP() []byte {
 	return file_continuum_plugin_v1_common_proto_rawDescData
 }
 
-var file_continuum_plugin_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_continuum_plugin_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_continuum_plugin_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_continuum_plugin_v1_common_proto_goTypes = []any{
-	(*SupportedPlatform)(nil),    // 0: continuum.plugin.v1.SupportedPlatform
-	(*ConfigSchema)(nil),         // 1: continuum.plugin.v1.ConfigSchema
-	(*ConfigEntry)(nil),          // 2: continuum.plugin.v1.ConfigEntry
-	(*HttpRouteDescriptor)(nil),  // 3: continuum.plugin.v1.HttpRouteDescriptor
-	(*PackagedAsset)(nil),        // 4: continuum.plugin.v1.PackagedAsset
-	(*CapabilityDescriptor)(nil), // 5: continuum.plugin.v1.CapabilityDescriptor
-	(*PluginManifest)(nil),       // 6: continuum.plugin.v1.PluginManifest
-	(*GetManifestRequest)(nil),   // 7: continuum.plugin.v1.GetManifestRequest
-	(*GetManifestResponse)(nil),  // 8: continuum.plugin.v1.GetManifestResponse
-	(*ConfigureRequest)(nil),     // 9: continuum.plugin.v1.ConfigureRequest
-	(*ConfigureResponse)(nil),    // 10: continuum.plugin.v1.ConfigureResponse
-	(*structpb.Struct)(nil),      // 11: google.protobuf.Struct
+	(AdminFormControl)(0),        // 0: continuum.plugin.v1.AdminFormControl
+	(*SupportedPlatform)(nil),    // 1: continuum.plugin.v1.SupportedPlatform
+	(*ConfigSchema)(nil),         // 2: continuum.plugin.v1.ConfigSchema
+	(*AdminFormOption)(nil),      // 3: continuum.plugin.v1.AdminFormOption
+	(*AdminFormField)(nil),       // 4: continuum.plugin.v1.AdminFormField
+	(*AdminFormDescriptor)(nil),  // 5: continuum.plugin.v1.AdminFormDescriptor
+	(*ConfigEntry)(nil),          // 6: continuum.plugin.v1.ConfigEntry
+	(*HttpRouteDescriptor)(nil),  // 7: continuum.plugin.v1.HttpRouteDescriptor
+	(*PackagedAsset)(nil),        // 8: continuum.plugin.v1.PackagedAsset
+	(*CapabilityDescriptor)(nil), // 9: continuum.plugin.v1.CapabilityDescriptor
+	(*PluginManifest)(nil),       // 10: continuum.plugin.v1.PluginManifest
+	(*GetManifestRequest)(nil),   // 11: continuum.plugin.v1.GetManifestRequest
+	(*GetManifestResponse)(nil),  // 12: continuum.plugin.v1.GetManifestResponse
+	(*ConfigureRequest)(nil),     // 13: continuum.plugin.v1.ConfigureRequest
+	(*ConfigureResponse)(nil),    // 14: continuum.plugin.v1.ConfigureResponse
+	(*structpb.Value)(nil),       // 15: google.protobuf.Value
+	(*structpb.Struct)(nil),      // 16: google.protobuf.Struct
 }
 var file_continuum_plugin_v1_common_proto_depIdxs = []int32{
-	11, // 0: continuum.plugin.v1.ConfigEntry.value:type_name -> google.protobuf.Struct
-	1,  // 1: continuum.plugin.v1.CapabilityDescriptor.config_schema:type_name -> continuum.plugin.v1.ConfigSchema
-	11, // 2: continuum.plugin.v1.CapabilityDescriptor.metadata:type_name -> google.protobuf.Struct
-	0,  // 3: continuum.plugin.v1.PluginManifest.supported_platforms:type_name -> continuum.plugin.v1.SupportedPlatform
-	5,  // 4: continuum.plugin.v1.PluginManifest.capabilities:type_name -> continuum.plugin.v1.CapabilityDescriptor
-	1,  // 5: continuum.plugin.v1.PluginManifest.global_config_schema:type_name -> continuum.plugin.v1.ConfigSchema
-	1,  // 6: continuum.plugin.v1.PluginManifest.user_config_schema:type_name -> continuum.plugin.v1.ConfigSchema
-	3,  // 7: continuum.plugin.v1.PluginManifest.http_routes:type_name -> continuum.plugin.v1.HttpRouteDescriptor
-	4,  // 8: continuum.plugin.v1.PluginManifest.assets:type_name -> continuum.plugin.v1.PackagedAsset
-	11, // 9: continuum.plugin.v1.PluginManifest.metadata:type_name -> google.protobuf.Struct
-	6,  // 10: continuum.plugin.v1.GetManifestResponse.manifest:type_name -> continuum.plugin.v1.PluginManifest
-	2,  // 11: continuum.plugin.v1.ConfigureRequest.config:type_name -> continuum.plugin.v1.ConfigEntry
-	7,  // 12: continuum.plugin.v1.Runtime.GetManifest:input_type -> continuum.plugin.v1.GetManifestRequest
-	9,  // 13: continuum.plugin.v1.Runtime.Configure:input_type -> continuum.plugin.v1.ConfigureRequest
-	8,  // 14: continuum.plugin.v1.Runtime.GetManifest:output_type -> continuum.plugin.v1.GetManifestResponse
-	10, // 15: continuum.plugin.v1.Runtime.Configure:output_type -> continuum.plugin.v1.ConfigureResponse
-	14, // [14:16] is the sub-list for method output_type
-	12, // [12:14] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	5,  // 0: continuum.plugin.v1.ConfigSchema.admin_form:type_name -> continuum.plugin.v1.AdminFormDescriptor
+	0,  // 1: continuum.plugin.v1.AdminFormField.control:type_name -> continuum.plugin.v1.AdminFormControl
+	15, // 2: continuum.plugin.v1.AdminFormField.default_value:type_name -> google.protobuf.Value
+	3,  // 3: continuum.plugin.v1.AdminFormField.options:type_name -> continuum.plugin.v1.AdminFormOption
+	4,  // 4: continuum.plugin.v1.AdminFormDescriptor.fields:type_name -> continuum.plugin.v1.AdminFormField
+	16, // 5: continuum.plugin.v1.ConfigEntry.value:type_name -> google.protobuf.Struct
+	2,  // 6: continuum.plugin.v1.CapabilityDescriptor.config_schema:type_name -> continuum.plugin.v1.ConfigSchema
+	16, // 7: continuum.plugin.v1.CapabilityDescriptor.metadata:type_name -> google.protobuf.Struct
+	1,  // 8: continuum.plugin.v1.PluginManifest.supported_platforms:type_name -> continuum.plugin.v1.SupportedPlatform
+	9,  // 9: continuum.plugin.v1.PluginManifest.capabilities:type_name -> continuum.plugin.v1.CapabilityDescriptor
+	2,  // 10: continuum.plugin.v1.PluginManifest.global_config_schema:type_name -> continuum.plugin.v1.ConfigSchema
+	2,  // 11: continuum.plugin.v1.PluginManifest.user_config_schema:type_name -> continuum.plugin.v1.ConfigSchema
+	7,  // 12: continuum.plugin.v1.PluginManifest.http_routes:type_name -> continuum.plugin.v1.HttpRouteDescriptor
+	8,  // 13: continuum.plugin.v1.PluginManifest.assets:type_name -> continuum.plugin.v1.PackagedAsset
+	16, // 14: continuum.plugin.v1.PluginManifest.metadata:type_name -> google.protobuf.Struct
+	10, // 15: continuum.plugin.v1.GetManifestResponse.manifest:type_name -> continuum.plugin.v1.PluginManifest
+	6,  // 16: continuum.plugin.v1.ConfigureRequest.config:type_name -> continuum.plugin.v1.ConfigEntry
+	11, // 17: continuum.plugin.v1.Runtime.GetManifest:input_type -> continuum.plugin.v1.GetManifestRequest
+	13, // 18: continuum.plugin.v1.Runtime.Configure:input_type -> continuum.plugin.v1.ConfigureRequest
+	12, // 19: continuum.plugin.v1.Runtime.GetManifest:output_type -> continuum.plugin.v1.GetManifestResponse
+	14, // 20: continuum.plugin.v1.Runtime.Configure:output_type -> continuum.plugin.v1.ConfigureResponse
+	19, // [19:21] is the sub-list for method output_type
+	17, // [17:19] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_continuum_plugin_v1_common_proto_init() }
@@ -862,13 +1208,14 @@ func file_continuum_plugin_v1_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_continuum_plugin_v1_common_proto_rawDesc), len(file_continuum_plugin_v1_common_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   11,
+			NumEnums:      1,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_continuum_plugin_v1_common_proto_goTypes,
 		DependencyIndexes: file_continuum_plugin_v1_common_proto_depIdxs,
+		EnumInfos:         file_continuum_plugin_v1_common_proto_enumTypes,
 		MessageInfos:      file_continuum_plugin_v1_common_proto_msgTypes,
 	}.Build()
 	File_continuum_plugin_v1_common_proto = out.File

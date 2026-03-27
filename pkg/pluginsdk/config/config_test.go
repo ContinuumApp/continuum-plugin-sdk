@@ -5,10 +5,13 @@ import (
 
 	pluginv1 "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1"
 	"github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/config"
+	publicmanifest "github.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginsdk/manifest"
 )
 
 func TestValidateManifestGlobalValue(t *testing.T) {
 	manifest := &pluginv1.PluginManifest{
+		PluginId: "example.plugin",
+		Version:  "1.0.0",
 		GlobalConfigSchema: []*pluginv1.ConfigSchema{
 			{
 				Key:        "connection",
@@ -56,5 +59,63 @@ func TestValidateManifestUserValue(t *testing.T) {
 		"theme": "midnight",
 	}); err != nil {
 		t.Fatalf("ValidateManifestUserValue() returned error: %v", err)
+	}
+}
+
+func TestValidateAdminForm(t *testing.T) {
+	manifest := &pluginv1.PluginManifest{
+		PluginId: "example.plugin",
+		Version:  "1.0.0",
+		GlobalConfigSchema: []*pluginv1.ConfigSchema{
+			{
+				Key:        "connection",
+				Title:      "Connection",
+				JsonSchema: `{"type":"object","properties":{"api_key":{"type":"string"},"pin":{"type":"string"},"enabled":{"type":"boolean"}},"required":["api_key"],"additionalProperties":false}`,
+				AdminForm: &pluginv1.AdminFormDescriptor{
+					Fields: []*pluginv1.AdminFormField{
+						{
+							Key:      "api_key",
+							Label:    "API Key",
+							Control:  pluginv1.AdminFormControl_ADMIN_FORM_CONTROL_PASSWORD,
+							Required: true,
+						},
+						{
+							Key:     "enabled",
+							Label:   "Enabled",
+							Control: pluginv1.AdminFormControl_ADMIN_FORM_CONTROL_SWITCH,
+						},
+					},
+				},
+			},
+		},
+	}
+
+	if err := publicmanifest.Validate(manifest); err != nil {
+		t.Fatalf("ValidateManifest() returned error: %v", err)
+	}
+}
+
+func TestValidateManifestRejectsInvalidAdminForm(t *testing.T) {
+	manifest := &pluginv1.PluginManifest{
+		GlobalConfigSchema: []*pluginv1.ConfigSchema{
+			{
+				Key:        "connection",
+				Title:      "Connection",
+				JsonSchema: `{"type":"object","properties":{"api_key":{"type":"string"}},"required":["api_key"],"additionalProperties":false}`,
+				AdminForm: &pluginv1.AdminFormDescriptor{
+					Fields: []*pluginv1.AdminFormField{
+						{
+							Key:     "missing",
+							Label:   "Missing",
+							Control: pluginv1.AdminFormControl_ADMIN_FORM_CONTROL_TEXT,
+						},
+					},
+				},
+			},
+		},
+	}
+
+	if err := publicmanifest.Validate(manifest); err == nil {
+		t.Fatal("expected invalid admin form field to be rejected")
 	}
 }
