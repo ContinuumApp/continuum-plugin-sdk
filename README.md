@@ -65,3 +65,7 @@ Run tests with:
 ```sh
 go test ./...
 ```
+
+## License
+
+`continuum-plugin-sdk` is licensed under `Apache-2.0`. See [LICENSE](LICENSE).
