@@ -27,6 +27,7 @@ jobs:
       - name: Verify tagged module can be consumed externally
         env:
           GOPROXY: direct
+          GOPRIVATE: github.com/ContinuumApp/*
           GONOSUMDB: github.com/ContinuumApp/*
         run: |
           tmpdir="$(mktemp -d)"
