@@ -1296,6 +1296,182 @@ func (x *GetImagesResponse) GetImages() []*ImageRecord {
 	return nil
 }
 
+type ResolveImageURLRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveImageURLRequest) Reset() {
+	*x = ResolveImageURLRequest{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveImageURLRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveImageURLRequest) ProtoMessage() {}
+
+func (x *ResolveImageURLRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveImageURLRequest.ProtoReflect.Descriptor instead.
+func (*ResolveImageURLRequest) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ResolveImageURLRequest) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+type ResolveImageURLResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveImageURLResponse) Reset() {
+	*x = ResolveImageURLResponse{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveImageURLResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveImageURLResponse) ProtoMessage() {}
+
+func (x *ResolveImageURLResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveImageURLResponse.ProtoReflect.Descriptor instead.
+func (*ResolveImageURLResponse) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ResolveImageURLResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+type ResolveImageURLsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Paths         []string               `protobuf:"bytes,1,rep,name=paths,proto3" json:"paths,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveImageURLsRequest) Reset() {
+	*x = ResolveImageURLsRequest{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveImageURLsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveImageURLsRequest) ProtoMessage() {}
+
+func (x *ResolveImageURLsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveImageURLsRequest.ProtoReflect.Descriptor instead.
+func (*ResolveImageURLsRequest) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ResolveImageURLsRequest) GetPaths() []string {
+	if x != nil {
+		return x.Paths
+	}
+	return nil
+}
+
+type ResolveImageURLsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Urls          map[string]string      `protobuf:"bytes,1,rep,name=urls,proto3" json:"urls,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveImageURLsResponse) Reset() {
+	*x = ResolveImageURLsResponse{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveImageURLsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveImageURLsResponse) ProtoMessage() {}
+
+func (x *ResolveImageURLsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveImageURLsResponse.ProtoReflect.Descriptor instead.
+func (*ResolveImageURLsResponse) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ResolveImageURLsResponse) GetUrls() map[string]string {
+	if x != nil {
+		return x.Urls
+	}
+	return nil
+}
+
 var File_continuum_plugin_v1_metadata_provider_proto protoreflect.FileDescriptor
 
 const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
@@ -1418,14 +1594,27 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"providerId\x12\x1b\n" +
 	"\titem_type\x18\x02 \x01(\tR\bitemType\"M\n" +
 	"\x11GetImagesResponse\x128\n" +
-	"\x06images\x18\x01 \x03(\v2 .continuum.plugin.v1.ImageRecordR\x06images2\xf4\x03\n" +
+	"\x06images\x18\x01 \x03(\v2 .continuum.plugin.v1.ImageRecordR\x06images\",\n" +
+	"\x16ResolveImageURLRequest\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\"+\n" +
+	"\x17ResolveImageURLResponse\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"/\n" +
+	"\x17ResolveImageURLsRequest\x12\x14\n" +
+	"\x05paths\x18\x01 \x03(\tR\x05paths\"\xa0\x01\n" +
+	"\x18ResolveImageURLsResponse\x12K\n" +
+	"\x04urls\x18\x01 \x03(\v27.continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntryR\x04urls\x1a7\n" +
+	"\tUrlsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xd3\x05\n" +
 	"\x10MetadataProvider\x12a\n" +
 	"\x06Search\x12*.continuum.plugin.v1.SearchMetadataRequest\x1a+.continuum.plugin.v1.SearchMetadataResponse\x12`\n" +
 	"\vGetMetadata\x12'.continuum.plugin.v1.GetMetadataRequest\x1a(.continuum.plugin.v1.GetMetadataResponse\x12]\n" +
 	"\n" +
 	"GetSeasons\x12&.continuum.plugin.v1.GetSeasonsRequest\x1a'.continuum.plugin.v1.GetSeasonsResponse\x12`\n" +
 	"\vGetEpisodes\x12'.continuum.plugin.v1.GetEpisodesRequest\x1a(.continuum.plugin.v1.GetEpisodesResponse\x12Z\n" +
-	"\tGetImages\x12%.continuum.plugin.v1.GetImagesRequest\x1a&.continuum.plugin.v1.GetImagesResponseB[ZYgithub.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1;pluginv1b\x06proto3"
+	"\tGetImages\x12%.continuum.plugin.v1.GetImagesRequest\x1a&.continuum.plugin.v1.GetImagesResponse\x12l\n" +
+	"\x0fResolveImageURL\x12+.continuum.plugin.v1.ResolveImageURLRequest\x1a,.continuum.plugin.v1.ResolveImageURLResponse\x12o\n" +
+	"\x10ResolveImageURLs\x12,.continuum.plugin.v1.ResolveImageURLsRequest\x1a-.continuum.plugin.v1.ResolveImageURLsResponseB[ZYgithub.com/ContinuumApp/continuum-plugin-sdk/pkg/pluginproto/continuum/plugin/v1;pluginv1b\x06proto3"
 
 var (
 	file_continuum_plugin_v1_metadata_provider_proto_rawDescOnce sync.Once
@@ -1439,60 +1628,70 @@ func file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP() []byte {
 	return file_continuum_plugin_v1_metadata_provider_proto_rawDescData
 }
 
-var file_continuum_plugin_v1_metadata_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_continuum_plugin_v1_metadata_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_continuum_plugin_v1_metadata_provider_proto_goTypes = []any{
-	(*ProviderSearchResult)(nil),   // 0: continuum.plugin.v1.ProviderSearchResult
-	(*SearchMetadataRequest)(nil),  // 1: continuum.plugin.v1.SearchMetadataRequest
-	(*SearchMetadataResponse)(nil), // 2: continuum.plugin.v1.SearchMetadataResponse
-	(*PersonRecord)(nil),           // 3: continuum.plugin.v1.PersonRecord
-	(*MetadataItem)(nil),           // 4: continuum.plugin.v1.MetadataItem
-	(*GetMetadataRequest)(nil),     // 5: continuum.plugin.v1.GetMetadataRequest
-	(*GetMetadataResponse)(nil),    // 6: continuum.plugin.v1.GetMetadataResponse
-	(*SeasonRecord)(nil),           // 7: continuum.plugin.v1.SeasonRecord
-	(*GetSeasonsRequest)(nil),      // 8: continuum.plugin.v1.GetSeasonsRequest
-	(*GetSeasonsResponse)(nil),     // 9: continuum.plugin.v1.GetSeasonsResponse
-	(*EpisodeRecord)(nil),          // 10: continuum.plugin.v1.EpisodeRecord
-	(*GetEpisodesRequest)(nil),     // 11: continuum.plugin.v1.GetEpisodesRequest
-	(*GetEpisodesResponse)(nil),    // 12: continuum.plugin.v1.GetEpisodesResponse
-	(*ImageRecord)(nil),            // 13: continuum.plugin.v1.ImageRecord
-	(*GetImagesRequest)(nil),       // 14: continuum.plugin.v1.GetImagesRequest
-	(*GetImagesResponse)(nil),      // 15: continuum.plugin.v1.GetImagesResponse
-	(*structpb.Struct)(nil),        // 16: google.protobuf.Struct
+	(*ProviderSearchResult)(nil),     // 0: continuum.plugin.v1.ProviderSearchResult
+	(*SearchMetadataRequest)(nil),    // 1: continuum.plugin.v1.SearchMetadataRequest
+	(*SearchMetadataResponse)(nil),   // 2: continuum.plugin.v1.SearchMetadataResponse
+	(*PersonRecord)(nil),             // 3: continuum.plugin.v1.PersonRecord
+	(*MetadataItem)(nil),             // 4: continuum.plugin.v1.MetadataItem
+	(*GetMetadataRequest)(nil),       // 5: continuum.plugin.v1.GetMetadataRequest
+	(*GetMetadataResponse)(nil),      // 6: continuum.plugin.v1.GetMetadataResponse
+	(*SeasonRecord)(nil),             // 7: continuum.plugin.v1.SeasonRecord
+	(*GetSeasonsRequest)(nil),        // 8: continuum.plugin.v1.GetSeasonsRequest
+	(*GetSeasonsResponse)(nil),       // 9: continuum.plugin.v1.GetSeasonsResponse
+	(*EpisodeRecord)(nil),            // 10: continuum.plugin.v1.EpisodeRecord
+	(*GetEpisodesRequest)(nil),       // 11: continuum.plugin.v1.GetEpisodesRequest
+	(*GetEpisodesResponse)(nil),      // 12: continuum.plugin.v1.GetEpisodesResponse
+	(*ImageRecord)(nil),              // 13: continuum.plugin.v1.ImageRecord
+	(*GetImagesRequest)(nil),         // 14: continuum.plugin.v1.GetImagesRequest
+	(*GetImagesResponse)(nil),        // 15: continuum.plugin.v1.GetImagesResponse
+	(*ResolveImageURLRequest)(nil),   // 16: continuum.plugin.v1.ResolveImageURLRequest
+	(*ResolveImageURLResponse)(nil),  // 17: continuum.plugin.v1.ResolveImageURLResponse
+	(*ResolveImageURLsRequest)(nil),  // 18: continuum.plugin.v1.ResolveImageURLsRequest
+	(*ResolveImageURLsResponse)(nil), // 19: continuum.plugin.v1.ResolveImageURLsResponse
+	nil,                              // 20: continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
+	(*structpb.Struct)(nil),          // 21: google.protobuf.Struct
 }
 var file_continuum_plugin_v1_metadata_provider_proto_depIdxs = []int32{
-	16, // 0: continuum.plugin.v1.ProviderSearchResult.provider_ids:type_name -> google.protobuf.Struct
-	16, // 1: continuum.plugin.v1.SearchMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
+	21, // 0: continuum.plugin.v1.ProviderSearchResult.provider_ids:type_name -> google.protobuf.Struct
+	21, // 1: continuum.plugin.v1.SearchMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
 	0,  // 2: continuum.plugin.v1.SearchMetadataResponse.results:type_name -> continuum.plugin.v1.ProviderSearchResult
-	16, // 3: continuum.plugin.v1.MetadataItem.provider_ids:type_name -> google.protobuf.Struct
-	16, // 4: continuum.plugin.v1.MetadataItem.ratings:type_name -> google.protobuf.Struct
-	16, // 5: continuum.plugin.v1.MetadataItem.legacy_people:type_name -> google.protobuf.Struct
-	16, // 6: continuum.plugin.v1.MetadataItem.metadata:type_name -> google.protobuf.Struct
+	21, // 3: continuum.plugin.v1.MetadataItem.provider_ids:type_name -> google.protobuf.Struct
+	21, // 4: continuum.plugin.v1.MetadataItem.ratings:type_name -> google.protobuf.Struct
+	21, // 5: continuum.plugin.v1.MetadataItem.legacy_people:type_name -> google.protobuf.Struct
+	21, // 6: continuum.plugin.v1.MetadataItem.metadata:type_name -> google.protobuf.Struct
 	3,  // 7: continuum.plugin.v1.MetadataItem.people:type_name -> continuum.plugin.v1.PersonRecord
 	4,  // 8: continuum.plugin.v1.GetMetadataResponse.item:type_name -> continuum.plugin.v1.MetadataItem
-	16, // 9: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
-	16, // 10: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
+	21, // 9: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 10: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
 	7,  // 11: continuum.plugin.v1.GetSeasonsResponse.seasons:type_name -> continuum.plugin.v1.SeasonRecord
-	16, // 12: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
-	16, // 13: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
-	16, // 14: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 12: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
+	21, // 13: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
+	21, // 14: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
 	10, // 15: continuum.plugin.v1.GetEpisodesResponse.episodes:type_name -> continuum.plugin.v1.EpisodeRecord
-	16, // 16: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 16: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
 	13, // 17: continuum.plugin.v1.GetImagesResponse.images:type_name -> continuum.plugin.v1.ImageRecord
-	1,  // 18: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
-	5,  // 19: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
-	8,  // 20: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
-	11, // 21: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
-	14, // 22: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
-	2,  // 23: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
-	6,  // 24: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
-	9,  // 25: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
-	12, // 26: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
-	15, // 27: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
-	23, // [23:28] is the sub-list for method output_type
-	18, // [18:23] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	20, // 18: continuum.plugin.v1.ResolveImageURLsResponse.urls:type_name -> continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
+	1,  // 19: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
+	5,  // 20: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
+	8,  // 21: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
+	11, // 22: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
+	14, // 23: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
+	16, // 24: continuum.plugin.v1.MetadataProvider.ResolveImageURL:input_type -> continuum.plugin.v1.ResolveImageURLRequest
+	18, // 25: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:input_type -> continuum.plugin.v1.ResolveImageURLsRequest
+	2,  // 26: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
+	6,  // 27: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
+	9,  // 28: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
+	12, // 29: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
+	15, // 30: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
+	17, // 31: continuum.plugin.v1.MetadataProvider.ResolveImageURL:output_type -> continuum.plugin.v1.ResolveImageURLResponse
+	19, // 32: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:output_type -> continuum.plugin.v1.ResolveImageURLsResponse
+	26, // [26:33] is the sub-list for method output_type
+	19, // [19:26] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_continuum_plugin_v1_metadata_provider_proto_init() }
@@ -1506,7 +1705,7 @@ func file_continuum_plugin_v1_metadata_provider_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_continuum_plugin_v1_metadata_provider_proto_rawDesc), len(file_continuum_plugin_v1_metadata_provider_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MetadataProvider_Search_FullMethodName      = "/continuum.plugin.v1.MetadataProvider/Search"
-	MetadataProvider_GetMetadata_FullMethodName = "/continuum.plugin.v1.MetadataProvider/GetMetadata"
-	MetadataProvider_GetSeasons_FullMethodName  = "/continuum.plugin.v1.MetadataProvider/GetSeasons"
-	MetadataProvider_GetEpisodes_FullMethodName = "/continuum.plugin.v1.MetadataProvider/GetEpisodes"
-	MetadataProvider_GetImages_FullMethodName   = "/continuum.plugin.v1.MetadataProvider/GetImages"
+	MetadataProvider_Search_FullMethodName           = "/continuum.plugin.v1.MetadataProvider/Search"
+	MetadataProvider_GetMetadata_FullMethodName      = "/continuum.plugin.v1.MetadataProvider/GetMetadata"
+	MetadataProvider_GetSeasons_FullMethodName       = "/continuum.plugin.v1.MetadataProvider/GetSeasons"
+	MetadataProvider_GetEpisodes_FullMethodName      = "/continuum.plugin.v1.MetadataProvider/GetEpisodes"
+	MetadataProvider_GetImages_FullMethodName        = "/continuum.plugin.v1.MetadataProvider/GetImages"
+	MetadataProvider_ResolveImageURL_FullMethodName  = "/continuum.plugin.v1.MetadataProvider/ResolveImageURL"
+	MetadataProvider_ResolveImageURLs_FullMethodName = "/continuum.plugin.v1.MetadataProvider/ResolveImageURLs"
 )
 
 // MetadataProviderClient is the client API for MetadataProvider service.
@@ -35,6 +37,8 @@ type MetadataProviderClient interface {
 	GetSeasons(ctx context.Context, in *GetSeasonsRequest, opts ...grpc.CallOption) (*GetSeasonsResponse, error)
 	GetEpisodes(ctx context.Context, in *GetEpisodesRequest, opts ...grpc.CallOption) (*GetEpisodesResponse, error)
 	GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error)
+	ResolveImageURL(ctx context.Context, in *ResolveImageURLRequest, opts ...grpc.CallOption) (*ResolveImageURLResponse, error)
+	ResolveImageURLs(ctx context.Context, in *ResolveImageURLsRequest, opts ...grpc.CallOption) (*ResolveImageURLsResponse, error)
 }
 
 type metadataProviderClient struct {
@@ -95,6 +99,26 @@ func (c *metadataProviderClient) GetImages(ctx context.Context, in *GetImagesReq
 	return out, nil
 }
 
+func (c *metadataProviderClient) ResolveImageURL(ctx context.Context, in *ResolveImageURLRequest, opts ...grpc.CallOption) (*ResolveImageURLResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResolveImageURLResponse)
+	err := c.cc.Invoke(ctx, MetadataProvider_ResolveImageURL_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *metadataProviderClient) ResolveImageURLs(ctx context.Context, in *ResolveImageURLsRequest, opts ...grpc.CallOption) (*ResolveImageURLsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResolveImageURLsResponse)
+	err := c.cc.Invoke(ctx, MetadataProvider_ResolveImageURLs_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MetadataProviderServer is the server API for MetadataProvider service.
 // All implementations should embed UnimplementedMetadataProviderServer
 // for forward compatibility.
@@ -104,6 +128,8 @@ type MetadataProviderServer interface {
 	GetSeasons(context.Context, *GetSeasonsRequest) (*GetSeasonsResponse, error)
 	GetEpisodes(context.Context, *GetEpisodesRequest) (*GetEpisodesResponse, error)
 	GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error)
+	ResolveImageURL(context.Context, *ResolveImageURLRequest) (*ResolveImageURLResponse, error)
+	ResolveImageURLs(context.Context, *ResolveImageURLsRequest) (*ResolveImageURLsResponse, error)
 }
 
 // UnimplementedMetadataProviderServer should be embedded to have
@@ -127,6 +153,12 @@ func (UnimplementedMetadataProviderServer) GetEpisodes(context.Context, *GetEpis
 }
 func (UnimplementedMetadataProviderServer) GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetImages not implemented")
+}
+func (UnimplementedMetadataProviderServer) ResolveImageURL(context.Context, *ResolveImageURLRequest) (*ResolveImageURLResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveImageURL not implemented")
+}
+func (UnimplementedMetadataProviderServer) ResolveImageURLs(context.Context, *ResolveImageURLsRequest) (*ResolveImageURLsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveImageURLs not implemented")
 }
 func (UnimplementedMetadataProviderServer) testEmbeddedByValue() {}
 
@@ -238,6 +270,42 @@ func _MetadataProvider_GetImages_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MetadataProvider_ResolveImageURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveImageURLRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MetadataProviderServer).ResolveImageURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MetadataProvider_ResolveImageURL_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MetadataProviderServer).ResolveImageURL(ctx, req.(*ResolveImageURLRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MetadataProvider_ResolveImageURLs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveImageURLsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MetadataProviderServer).ResolveImageURLs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MetadataProvider_ResolveImageURLs_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MetadataProviderServer).ResolveImageURLs(ctx, req.(*ResolveImageURLsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MetadataProvider_ServiceDesc is the grpc.ServiceDesc for MetadataProvider service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -264,6 +332,14 @@ var MetadataProvider_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetImages",
 			Handler:    _MetadataProvider_GetImages_Handler,
+		},
+		{
+			MethodName: "ResolveImageURL",
+			Handler:    _MetadataProvider_ResolveImageURL_Handler,
+		},
+		{
+			MethodName: "ResolveImageURLs",
+			Handler:    _MetadataProvider_ResolveImageURLs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

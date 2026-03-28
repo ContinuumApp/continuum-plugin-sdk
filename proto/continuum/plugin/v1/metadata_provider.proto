@@ -12,6 +12,8 @@ service MetadataProvider {
   rpc GetSeasons(GetSeasonsRequest) returns (GetSeasonsResponse);
   rpc GetEpisodes(GetEpisodesRequest) returns (GetEpisodesResponse);
   rpc GetImages(GetImagesRequest) returns (GetImagesResponse);
+  rpc ResolveImageURL(ResolveImageURLRequest) returns (ResolveImageURLResponse);
+  rpc ResolveImageURLs(ResolveImageURLsRequest) returns (ResolveImageURLsResponse);
 }
 
 message ProviderSearchResult {
@@ -147,4 +149,20 @@ message GetImagesRequest {
 
 message GetImagesResponse {
   repeated ImageRecord images = 1;
+}
+
+message ResolveImageURLRequest {
+  string path = 1;
+}
+
+message ResolveImageURLResponse {
+  string url = 1;
+}
+
+message ResolveImageURLsRequest {
+  repeated string paths = 1;
+}
+
+message ResolveImageURLsResponse {
+  map<string, string> urls = 1;
 }
