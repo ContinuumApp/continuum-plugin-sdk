@@ -1299,6 +1299,7 @@ func (x *GetImagesResponse) GetImages() []*ImageRecord {
 type ResolveImageURLRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	Variant       string                 `protobuf:"bytes,2,opt,name=variant,proto3" json:"variant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1336,6 +1337,13 @@ func (*ResolveImageURLRequest) Descriptor() ([]byte, []int) {
 func (x *ResolveImageURLRequest) GetPath() string {
 	if x != nil {
 		return x.Path
+	}
+	return ""
+}
+
+func (x *ResolveImageURLRequest) GetVariant() string {
+	if x != nil {
+		return x.Variant
 	}
 	return ""
 }
@@ -1387,6 +1395,7 @@ func (x *ResolveImageURLResponse) GetUrl() string {
 type ResolveImageURLsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Paths         []string               `protobuf:"bytes,1,rep,name=paths,proto3" json:"paths,omitempty"`
+	Variant       string                 `protobuf:"bytes,2,opt,name=variant,proto3" json:"variant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1426,6 +1435,13 @@ func (x *ResolveImageURLsRequest) GetPaths() []string {
 		return x.Paths
 	}
 	return nil
+}
+
+func (x *ResolveImageURLsRequest) GetVariant() string {
+	if x != nil {
+		return x.Variant
+	}
+	return ""
 }
 
 type ResolveImageURLsResponse struct {
@@ -1594,13 +1610,15 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"providerId\x12\x1b\n" +
 	"\titem_type\x18\x02 \x01(\tR\bitemType\"M\n" +
 	"\x11GetImagesResponse\x128\n" +
-	"\x06images\x18\x01 \x03(\v2 .continuum.plugin.v1.ImageRecordR\x06images\",\n" +
+	"\x06images\x18\x01 \x03(\v2 .continuum.plugin.v1.ImageRecordR\x06images\"F\n" +
 	"\x16ResolveImageURLRequest\x12\x12\n" +
-	"\x04path\x18\x01 \x01(\tR\x04path\"+\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12\x18\n" +
+	"\avariant\x18\x02 \x01(\tR\avariant\"+\n" +
 	"\x17ResolveImageURLResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"/\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"I\n" +
 	"\x17ResolveImageURLsRequest\x12\x14\n" +
-	"\x05paths\x18\x01 \x03(\tR\x05paths\"\xa0\x01\n" +
+	"\x05paths\x18\x01 \x03(\tR\x05paths\x12\x18\n" +
+	"\avariant\x18\x02 \x01(\tR\avariant\"\xa0\x01\n" +
 	"\x18ResolveImageURLsResponse\x12K\n" +
 	"\x04urls\x18\x01 \x03(\v27.continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntryR\x04urls\x1a7\n" +
 	"\tUrlsEntry\x12\x10\n" +

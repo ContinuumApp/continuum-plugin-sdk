@@ -153,6 +153,7 @@ message GetImagesResponse {
 
 message ResolveImageURLRequest {
   string path = 1;
+  string variant = 2;
 }
 
 message ResolveImageURLResponse {
@@ -161,6 +162,7 @@ message ResolveImageURLResponse {
 
 message ResolveImageURLsRequest {
   repeated string paths = 1;
+  string variant = 2;
 }
 
 message ResolveImageURLsResponse {
