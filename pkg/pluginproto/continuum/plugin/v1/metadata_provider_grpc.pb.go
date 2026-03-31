@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	MetadataProvider_Search_FullMethodName           = "/continuum.plugin.v1.MetadataProvider/Search"
 	MetadataProvider_GetMetadata_FullMethodName      = "/continuum.plugin.v1.MetadataProvider/GetMetadata"
+	MetadataProvider_GetPersonDetail_FullMethodName  = "/continuum.plugin.v1.MetadataProvider/GetPersonDetail"
 	MetadataProvider_GetSeasons_FullMethodName       = "/continuum.plugin.v1.MetadataProvider/GetSeasons"
 	MetadataProvider_GetEpisodes_FullMethodName      = "/continuum.plugin.v1.MetadataProvider/GetEpisodes"
 	MetadataProvider_GetImages_FullMethodName        = "/continuum.plugin.v1.MetadataProvider/GetImages"
@@ -34,6 +35,7 @@ const (
 type MetadataProviderClient interface {
 	Search(ctx context.Context, in *SearchMetadataRequest, opts ...grpc.CallOption) (*SearchMetadataResponse, error)
 	GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...grpc.CallOption) (*GetMetadataResponse, error)
+	GetPersonDetail(ctx context.Context, in *GetPersonDetailRequest, opts ...grpc.CallOption) (*GetPersonDetailResponse, error)
 	GetSeasons(ctx context.Context, in *GetSeasonsRequest, opts ...grpc.CallOption) (*GetSeasonsResponse, error)
 	GetEpisodes(ctx context.Context, in *GetEpisodesRequest, opts ...grpc.CallOption) (*GetEpisodesResponse, error)
 	GetImages(ctx context.Context, in *GetImagesRequest, opts ...grpc.CallOption) (*GetImagesResponse, error)
@@ -63,6 +65,16 @@ func (c *metadataProviderClient) GetMetadata(ctx context.Context, in *GetMetadat
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMetadataResponse)
 	err := c.cc.Invoke(ctx, MetadataProvider_GetMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *metadataProviderClient) GetPersonDetail(ctx context.Context, in *GetPersonDetailRequest, opts ...grpc.CallOption) (*GetPersonDetailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPersonDetailResponse)
+	err := c.cc.Invoke(ctx, MetadataProvider_GetPersonDetail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,6 +137,7 @@ func (c *metadataProviderClient) ResolveImageURLs(ctx context.Context, in *Resol
 type MetadataProviderServer interface {
 	Search(context.Context, *SearchMetadataRequest) (*SearchMetadataResponse, error)
 	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
+	GetPersonDetail(context.Context, *GetPersonDetailRequest) (*GetPersonDetailResponse, error)
 	GetSeasons(context.Context, *GetSeasonsRequest) (*GetSeasonsResponse, error)
 	GetEpisodes(context.Context, *GetEpisodesRequest) (*GetEpisodesResponse, error)
 	GetImages(context.Context, *GetImagesRequest) (*GetImagesResponse, error)
@@ -144,6 +157,9 @@ func (UnimplementedMetadataProviderServer) Search(context.Context, *SearchMetada
 }
 func (UnimplementedMetadataProviderServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMetadata not implemented")
+}
+func (UnimplementedMetadataProviderServer) GetPersonDetail(context.Context, *GetPersonDetailRequest) (*GetPersonDetailResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPersonDetail not implemented")
 }
 func (UnimplementedMetadataProviderServer) GetSeasons(context.Context, *GetSeasonsRequest) (*GetSeasonsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSeasons not implemented")
@@ -212,6 +228,24 @@ func _MetadataProvider_GetMetadata_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MetadataProviderServer).GetMetadata(ctx, req.(*GetMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MetadataProvider_GetPersonDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPersonDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MetadataProviderServer).GetPersonDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MetadataProvider_GetPersonDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MetadataProviderServer).GetPersonDetail(ctx, req.(*GetPersonDetailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,6 +354,10 @@ var MetadataProvider_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMetadata",
 			Handler:    _MetadataProvider_GetMetadata_Handler,
+		},
+		{
+			MethodName: "GetPersonDetail",
+			Handler:    _MetadataProvider_GetPersonDetail_Handler,
 		},
 		{
 			MethodName: "GetSeasons",

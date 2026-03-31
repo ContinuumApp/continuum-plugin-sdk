@@ -58,3 +58,42 @@ func TestMetadataProviderRequestDescriptors_IncludeProviderContext(t *testing.T)
 		})
 	}
 }
+
+func TestMetadataProviderServiceDescriptor_IncludesPersonDetailRPC(t *testing.T) {
+	method := File_continuum_plugin_v1_metadata_provider_proto.Services().
+		ByName("MetadataProvider").
+		Methods().
+		ByName("GetPersonDetail")
+	if method == nil {
+		t.Fatal("MetadataProvider service descriptor is missing GetPersonDetail")
+	}
+}
+
+func TestGetPersonDetailRequestDescriptor_IncludesProviderContext(t *testing.T) {
+	fields := (&GetPersonDetailRequest{}).ProtoReflect().Descriptor().Fields()
+	for _, name := range []string{"provider_ids", "language"} {
+		if fields.ByName(protoreflect.Name(name)) == nil {
+			t.Fatalf("GetPersonDetailRequest descriptor is missing %s", name)
+		}
+	}
+}
+
+func TestPersonDetailRecordDescriptor_IncludesRefreshFields(t *testing.T) {
+	fields := (&PersonDetailRecord{}).ProtoReflect().Descriptor().Fields()
+	for _, name := range []string{
+		"name",
+		"sort_name",
+		"bio",
+		"birth_date",
+		"death_date",
+		"birthplace",
+		"homepage",
+		"photo_path",
+		"photo_thumbhash",
+		"provider_ids",
+	} {
+		if fields.ByName(protoreflect.Name(name)) == nil {
+			t.Fatalf("PersonDetailRecord descriptor is missing %s", name)
+		}
+	}
+}

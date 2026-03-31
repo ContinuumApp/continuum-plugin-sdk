@@ -740,6 +740,218 @@ func (x *GetMetadataResponse) GetItem() *MetadataItem {
 	return nil
 }
 
+type GetPersonDetailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProviderIds   *structpb.Struct       `protobuf:"bytes,1,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language      string                 `protobuf:"bytes,2,opt,name=language,proto3" json:"language,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPersonDetailRequest) Reset() {
+	*x = GetPersonDetailRequest{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPersonDetailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPersonDetailRequest) ProtoMessage() {}
+
+func (x *GetPersonDetailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPersonDetailRequest.ProtoReflect.Descriptor instead.
+func (*GetPersonDetailRequest) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetPersonDetailRequest) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
+}
+
+func (x *GetPersonDetailRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+type PersonDetailRecord struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Name           string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	SortName       string                 `protobuf:"bytes,2,opt,name=sort_name,json=sortName,proto3" json:"sort_name,omitempty"`
+	Bio            string                 `protobuf:"bytes,3,opt,name=bio,proto3" json:"bio,omitempty"`
+	BirthDate      string                 `protobuf:"bytes,4,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	DeathDate      string                 `protobuf:"bytes,5,opt,name=death_date,json=deathDate,proto3" json:"death_date,omitempty"`
+	Birthplace     string                 `protobuf:"bytes,6,opt,name=birthplace,proto3" json:"birthplace,omitempty"`
+	Homepage       string                 `protobuf:"bytes,7,opt,name=homepage,proto3" json:"homepage,omitempty"`
+	PhotoPath      string                 `protobuf:"bytes,8,opt,name=photo_path,json=photoPath,proto3" json:"photo_path,omitempty"`
+	PhotoThumbhash string                 `protobuf:"bytes,9,opt,name=photo_thumbhash,json=photoThumbhash,proto3" json:"photo_thumbhash,omitempty"`
+	ProviderIds    *structpb.Struct       `protobuf:"bytes,10,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *PersonDetailRecord) Reset() {
+	*x = PersonDetailRecord{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PersonDetailRecord) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PersonDetailRecord) ProtoMessage() {}
+
+func (x *PersonDetailRecord) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PersonDetailRecord.ProtoReflect.Descriptor instead.
+func (*PersonDetailRecord) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *PersonDetailRecord) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetSortName() string {
+	if x != nil {
+		return x.SortName
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetBirthDate() string {
+	if x != nil {
+		return x.BirthDate
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetDeathDate() string {
+	if x != nil {
+		return x.DeathDate
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetBirthplace() string {
+	if x != nil {
+		return x.Birthplace
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetHomepage() string {
+	if x != nil {
+		return x.Homepage
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetPhotoPath() string {
+	if x != nil {
+		return x.PhotoPath
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetPhotoThumbhash() string {
+	if x != nil {
+		return x.PhotoThumbhash
+	}
+	return ""
+}
+
+func (x *PersonDetailRecord) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
+}
+
+type GetPersonDetailResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Person        *PersonDetailRecord    `protobuf:"bytes,1,opt,name=person,proto3" json:"person,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPersonDetailResponse) Reset() {
+	*x = GetPersonDetailResponse{}
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPersonDetailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPersonDetailResponse) ProtoMessage() {}
+
+func (x *GetPersonDetailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPersonDetailResponse.ProtoReflect.Descriptor instead.
+func (*GetPersonDetailResponse) Descriptor() ([]byte, []int) {
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetPersonDetailResponse) GetPerson() *PersonDetailRecord {
+	if x != nil {
+		return x.Person
+	}
+	return nil
+}
+
 type SeasonRecord struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SeasonNumber  int32                  `protobuf:"varint,1,opt,name=season_number,json=seasonNumber,proto3" json:"season_number,omitempty"`
@@ -756,7 +968,7 @@ type SeasonRecord struct {
 
 func (x *SeasonRecord) Reset() {
 	*x = SeasonRecord{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[7]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -768,7 +980,7 @@ func (x *SeasonRecord) String() string {
 func (*SeasonRecord) ProtoMessage() {}
 
 func (x *SeasonRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[7]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -781,7 +993,7 @@ func (x *SeasonRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SeasonRecord.ProtoReflect.Descriptor instead.
 func (*SeasonRecord) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{7}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SeasonRecord) GetSeasonNumber() int32 {
@@ -850,7 +1062,7 @@ type GetSeasonsRequest struct {
 
 func (x *GetSeasonsRequest) Reset() {
 	*x = GetSeasonsRequest{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[8]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -862,7 +1074,7 @@ func (x *GetSeasonsRequest) String() string {
 func (*GetSeasonsRequest) ProtoMessage() {}
 
 func (x *GetSeasonsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[8]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -875,7 +1087,7 @@ func (x *GetSeasonsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSeasonsRequest.ProtoReflect.Descriptor instead.
 func (*GetSeasonsRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{8}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetSeasonsRequest) GetSeriesProviderId() string {
@@ -901,7 +1113,7 @@ type GetSeasonsResponse struct {
 
 func (x *GetSeasonsResponse) Reset() {
 	*x = GetSeasonsResponse{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[9]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -913,7 +1125,7 @@ func (x *GetSeasonsResponse) String() string {
 func (*GetSeasonsResponse) ProtoMessage() {}
 
 func (x *GetSeasonsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[9]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -926,7 +1138,7 @@ func (x *GetSeasonsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSeasonsResponse.ProtoReflect.Descriptor instead.
 func (*GetSeasonsResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{9}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetSeasonsResponse) GetSeasons() []*SeasonRecord {
@@ -955,7 +1167,7 @@ type EpisodeRecord struct {
 
 func (x *EpisodeRecord) Reset() {
 	*x = EpisodeRecord{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[10]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -967,7 +1179,7 @@ func (x *EpisodeRecord) String() string {
 func (*EpisodeRecord) ProtoMessage() {}
 
 func (x *EpisodeRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[10]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -980,7 +1192,7 @@ func (x *EpisodeRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EpisodeRecord.ProtoReflect.Descriptor instead.
 func (*EpisodeRecord) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{10}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *EpisodeRecord) GetSeasonNumber() int32 {
@@ -1071,7 +1283,7 @@ type GetEpisodesRequest struct {
 
 func (x *GetEpisodesRequest) Reset() {
 	*x = GetEpisodesRequest{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[11]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1083,7 +1295,7 @@ func (x *GetEpisodesRequest) String() string {
 func (*GetEpisodesRequest) ProtoMessage() {}
 
 func (x *GetEpisodesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[11]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1096,7 +1308,7 @@ func (x *GetEpisodesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEpisodesRequest.ProtoReflect.Descriptor instead.
 func (*GetEpisodesRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{11}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetEpisodesRequest) GetSeriesProviderId() string {
@@ -1129,7 +1341,7 @@ type GetEpisodesResponse struct {
 
 func (x *GetEpisodesResponse) Reset() {
 	*x = GetEpisodesResponse{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[12]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1141,7 +1353,7 @@ func (x *GetEpisodesResponse) String() string {
 func (*GetEpisodesResponse) ProtoMessage() {}
 
 func (x *GetEpisodesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[12]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1154,7 +1366,7 @@ func (x *GetEpisodesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEpisodesResponse.ProtoReflect.Descriptor instead.
 func (*GetEpisodesResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{12}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetEpisodesResponse) GetEpisodes() []*EpisodeRecord {
@@ -1178,7 +1390,7 @@ type ImageRecord struct {
 
 func (x *ImageRecord) Reset() {
 	*x = ImageRecord{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[13]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1190,7 +1402,7 @@ func (x *ImageRecord) String() string {
 func (*ImageRecord) ProtoMessage() {}
 
 func (x *ImageRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[13]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1203,7 +1415,7 @@ func (x *ImageRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImageRecord.ProtoReflect.Descriptor instead.
 func (*ImageRecord) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{13}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ImageRecord) GetKind() string {
@@ -1260,7 +1472,7 @@ type GetImagesRequest struct {
 
 func (x *GetImagesRequest) Reset() {
 	*x = GetImagesRequest{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[14]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1272,7 +1484,7 @@ func (x *GetImagesRequest) String() string {
 func (*GetImagesRequest) ProtoMessage() {}
 
 func (x *GetImagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[14]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1285,7 +1497,7 @@ func (x *GetImagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetImagesRequest.ProtoReflect.Descriptor instead.
 func (*GetImagesRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{14}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetImagesRequest) GetProviderId() string {
@@ -1325,7 +1537,7 @@ type GetImagesResponse struct {
 
 func (x *GetImagesResponse) Reset() {
 	*x = GetImagesResponse{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[15]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1337,7 +1549,7 @@ func (x *GetImagesResponse) String() string {
 func (*GetImagesResponse) ProtoMessage() {}
 
 func (x *GetImagesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[15]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1350,7 +1562,7 @@ func (x *GetImagesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetImagesResponse.ProtoReflect.Descriptor instead.
 func (*GetImagesResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{15}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetImagesResponse) GetImages() []*ImageRecord {
@@ -1370,7 +1582,7 @@ type ResolveImageURLRequest struct {
 
 func (x *ResolveImageURLRequest) Reset() {
 	*x = ResolveImageURLRequest{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1382,7 +1594,7 @@ func (x *ResolveImageURLRequest) String() string {
 func (*ResolveImageURLRequest) ProtoMessage() {}
 
 func (x *ResolveImageURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[16]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1395,7 +1607,7 @@ func (x *ResolveImageURLRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveImageURLRequest.ProtoReflect.Descriptor instead.
 func (*ResolveImageURLRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{16}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ResolveImageURLRequest) GetPath() string {
@@ -1421,7 +1633,7 @@ type ResolveImageURLResponse struct {
 
 func (x *ResolveImageURLResponse) Reset() {
 	*x = ResolveImageURLResponse{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1433,7 +1645,7 @@ func (x *ResolveImageURLResponse) String() string {
 func (*ResolveImageURLResponse) ProtoMessage() {}
 
 func (x *ResolveImageURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[17]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1446,7 +1658,7 @@ func (x *ResolveImageURLResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveImageURLResponse.ProtoReflect.Descriptor instead.
 func (*ResolveImageURLResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{17}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ResolveImageURLResponse) GetUrl() string {
@@ -1466,7 +1678,7 @@ type ResolveImageURLsRequest struct {
 
 func (x *ResolveImageURLsRequest) Reset() {
 	*x = ResolveImageURLsRequest{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1478,7 +1690,7 @@ func (x *ResolveImageURLsRequest) String() string {
 func (*ResolveImageURLsRequest) ProtoMessage() {}
 
 func (x *ResolveImageURLsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[18]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1491,7 +1703,7 @@ func (x *ResolveImageURLsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveImageURLsRequest.ProtoReflect.Descriptor instead.
 func (*ResolveImageURLsRequest) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{18}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ResolveImageURLsRequest) GetPaths() []string {
@@ -1517,7 +1729,7 @@ type ResolveImageURLsResponse struct {
 
 func (x *ResolveImageURLsResponse) Reset() {
 	*x = ResolveImageURLsResponse{}
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1529,7 +1741,7 @@ func (x *ResolveImageURLsResponse) String() string {
 func (*ResolveImageURLsResponse) ProtoMessage() {}
 
 func (x *ResolveImageURLsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[19]
+	mi := &file_continuum_plugin_v1_metadata_provider_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1542,7 +1754,7 @@ func (x *ResolveImageURLsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveImageURLsResponse.ProtoReflect.Descriptor instead.
 func (*ResolveImageURLsResponse) Descriptor() ([]byte, []int) {
-	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{19}
+	return file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ResolveImageURLsResponse) GetUrls() map[string]string {
@@ -1630,7 +1842,29 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\blanguage\x18\x04 \x01(\tR\blanguage\x12\x1b\n" +
 	"\tfile_path\x18\x05 \x01(\tR\bfilePath\"L\n" +
 	"\x13GetMetadataResponse\x125\n" +
-	"\x04item\x18\x01 \x01(\v2!.continuum.plugin.v1.MetadataItemR\x04item\"\xb3\x02\n" +
+	"\x04item\x18\x01 \x01(\v2!.continuum.plugin.v1.MetadataItemR\x04item\"p\n" +
+	"\x16GetPersonDetailRequest\x12:\n" +
+	"\fprovider_ids\x18\x01 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x02 \x01(\tR\blanguage\"\xd5\x02\n" +
+	"\x12PersonDetailRecord\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n" +
+	"\tsort_name\x18\x02 \x01(\tR\bsortName\x12\x10\n" +
+	"\x03bio\x18\x03 \x01(\tR\x03bio\x12\x1d\n" +
+	"\n" +
+	"birth_date\x18\x04 \x01(\tR\tbirthDate\x12\x1d\n" +
+	"\n" +
+	"death_date\x18\x05 \x01(\tR\tdeathDate\x12\x1e\n" +
+	"\n" +
+	"birthplace\x18\x06 \x01(\tR\n" +
+	"birthplace\x12\x1a\n" +
+	"\bhomepage\x18\a \x01(\tR\bhomepage\x12\x1d\n" +
+	"\n" +
+	"photo_path\x18\b \x01(\tR\tphotoPath\x12'\n" +
+	"\x0fphoto_thumbhash\x18\t \x01(\tR\x0ephotoThumbhash\x12:\n" +
+	"\fprovider_ids\x18\n" +
+	" \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"Z\n" +
+	"\x17GetPersonDetailResponse\x12?\n" +
+	"\x06person\x18\x01 \x01(\v2'.continuum.plugin.v1.PersonDetailRecordR\x06person\"\xb3\x02\n" +
 	"\fSeasonRecord\x12#\n" +
 	"\rseason_number\x18\x01 \x01(\x05R\fseasonNumber\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
@@ -1695,10 +1929,11 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\x04urls\x18\x01 \x03(\v27.continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntryR\x04urls\x1a7\n" +
 	"\tUrlsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xd3\x05\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xc1\x06\n" +
 	"\x10MetadataProvider\x12a\n" +
 	"\x06Search\x12*.continuum.plugin.v1.SearchMetadataRequest\x1a+.continuum.plugin.v1.SearchMetadataResponse\x12`\n" +
-	"\vGetMetadata\x12'.continuum.plugin.v1.GetMetadataRequest\x1a(.continuum.plugin.v1.GetMetadataResponse\x12]\n" +
+	"\vGetMetadata\x12'.continuum.plugin.v1.GetMetadataRequest\x1a(.continuum.plugin.v1.GetMetadataResponse\x12l\n" +
+	"\x0fGetPersonDetail\x12+.continuum.plugin.v1.GetPersonDetailRequest\x1a,.continuum.plugin.v1.GetPersonDetailResponse\x12]\n" +
 	"\n" +
 	"GetSeasons\x12&.continuum.plugin.v1.GetSeasonsRequest\x1a'.continuum.plugin.v1.GetSeasonsResponse\x12`\n" +
 	"\vGetEpisodes\x12'.continuum.plugin.v1.GetEpisodesRequest\x1a(.continuum.plugin.v1.GetEpisodesResponse\x12Z\n" +
@@ -1718,7 +1953,7 @@ func file_continuum_plugin_v1_metadata_provider_proto_rawDescGZIP() []byte {
 	return file_continuum_plugin_v1_metadata_provider_proto_rawDescData
 }
 
-var file_continuum_plugin_v1_metadata_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_continuum_plugin_v1_metadata_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_continuum_plugin_v1_metadata_provider_proto_goTypes = []any{
 	(*ProviderSearchResult)(nil),     // 0: continuum.plugin.v1.ProviderSearchResult
 	(*SearchMetadataRequest)(nil),    // 1: continuum.plugin.v1.SearchMetadataRequest
@@ -1727,65 +1962,73 @@ var file_continuum_plugin_v1_metadata_provider_proto_goTypes = []any{
 	(*MetadataItem)(nil),             // 4: continuum.plugin.v1.MetadataItem
 	(*GetMetadataRequest)(nil),       // 5: continuum.plugin.v1.GetMetadataRequest
 	(*GetMetadataResponse)(nil),      // 6: continuum.plugin.v1.GetMetadataResponse
-	(*SeasonRecord)(nil),             // 7: continuum.plugin.v1.SeasonRecord
-	(*GetSeasonsRequest)(nil),        // 8: continuum.plugin.v1.GetSeasonsRequest
-	(*GetSeasonsResponse)(nil),       // 9: continuum.plugin.v1.GetSeasonsResponse
-	(*EpisodeRecord)(nil),            // 10: continuum.plugin.v1.EpisodeRecord
-	(*GetEpisodesRequest)(nil),       // 11: continuum.plugin.v1.GetEpisodesRequest
-	(*GetEpisodesResponse)(nil),      // 12: continuum.plugin.v1.GetEpisodesResponse
-	(*ImageRecord)(nil),              // 13: continuum.plugin.v1.ImageRecord
-	(*GetImagesRequest)(nil),         // 14: continuum.plugin.v1.GetImagesRequest
-	(*GetImagesResponse)(nil),        // 15: continuum.plugin.v1.GetImagesResponse
-	(*ResolveImageURLRequest)(nil),   // 16: continuum.plugin.v1.ResolveImageURLRequest
-	(*ResolveImageURLResponse)(nil),  // 17: continuum.plugin.v1.ResolveImageURLResponse
-	(*ResolveImageURLsRequest)(nil),  // 18: continuum.plugin.v1.ResolveImageURLsRequest
-	(*ResolveImageURLsResponse)(nil), // 19: continuum.plugin.v1.ResolveImageURLsResponse
-	nil,                              // 20: continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
-	(*structpb.Struct)(nil),          // 21: google.protobuf.Struct
+	(*GetPersonDetailRequest)(nil),   // 7: continuum.plugin.v1.GetPersonDetailRequest
+	(*PersonDetailRecord)(nil),       // 8: continuum.plugin.v1.PersonDetailRecord
+	(*GetPersonDetailResponse)(nil),  // 9: continuum.plugin.v1.GetPersonDetailResponse
+	(*SeasonRecord)(nil),             // 10: continuum.plugin.v1.SeasonRecord
+	(*GetSeasonsRequest)(nil),        // 11: continuum.plugin.v1.GetSeasonsRequest
+	(*GetSeasonsResponse)(nil),       // 12: continuum.plugin.v1.GetSeasonsResponse
+	(*EpisodeRecord)(nil),            // 13: continuum.plugin.v1.EpisodeRecord
+	(*GetEpisodesRequest)(nil),       // 14: continuum.plugin.v1.GetEpisodesRequest
+	(*GetEpisodesResponse)(nil),      // 15: continuum.plugin.v1.GetEpisodesResponse
+	(*ImageRecord)(nil),              // 16: continuum.plugin.v1.ImageRecord
+	(*GetImagesRequest)(nil),         // 17: continuum.plugin.v1.GetImagesRequest
+	(*GetImagesResponse)(nil),        // 18: continuum.plugin.v1.GetImagesResponse
+	(*ResolveImageURLRequest)(nil),   // 19: continuum.plugin.v1.ResolveImageURLRequest
+	(*ResolveImageURLResponse)(nil),  // 20: continuum.plugin.v1.ResolveImageURLResponse
+	(*ResolveImageURLsRequest)(nil),  // 21: continuum.plugin.v1.ResolveImageURLsRequest
+	(*ResolveImageURLsResponse)(nil), // 22: continuum.plugin.v1.ResolveImageURLsResponse
+	nil,                              // 23: continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
+	(*structpb.Struct)(nil),          // 24: google.protobuf.Struct
 }
 var file_continuum_plugin_v1_metadata_provider_proto_depIdxs = []int32{
-	21, // 0: continuum.plugin.v1.ProviderSearchResult.provider_ids:type_name -> google.protobuf.Struct
-	21, // 1: continuum.plugin.v1.SearchMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
+	24, // 0: continuum.plugin.v1.ProviderSearchResult.provider_ids:type_name -> google.protobuf.Struct
+	24, // 1: continuum.plugin.v1.SearchMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
 	0,  // 2: continuum.plugin.v1.SearchMetadataResponse.results:type_name -> continuum.plugin.v1.ProviderSearchResult
-	21, // 3: continuum.plugin.v1.MetadataItem.provider_ids:type_name -> google.protobuf.Struct
-	21, // 4: continuum.plugin.v1.MetadataItem.ratings:type_name -> google.protobuf.Struct
-	21, // 5: continuum.plugin.v1.MetadataItem.legacy_people:type_name -> google.protobuf.Struct
-	21, // 6: continuum.plugin.v1.MetadataItem.metadata:type_name -> google.protobuf.Struct
+	24, // 3: continuum.plugin.v1.MetadataItem.provider_ids:type_name -> google.protobuf.Struct
+	24, // 4: continuum.plugin.v1.MetadataItem.ratings:type_name -> google.protobuf.Struct
+	24, // 5: continuum.plugin.v1.MetadataItem.legacy_people:type_name -> google.protobuf.Struct
+	24, // 6: continuum.plugin.v1.MetadataItem.metadata:type_name -> google.protobuf.Struct
 	3,  // 7: continuum.plugin.v1.MetadataItem.people:type_name -> continuum.plugin.v1.PersonRecord
-	21, // 8: continuum.plugin.v1.GetMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
+	24, // 8: continuum.plugin.v1.GetMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
 	4,  // 9: continuum.plugin.v1.GetMetadataResponse.item:type_name -> continuum.plugin.v1.MetadataItem
-	21, // 10: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
-	21, // 11: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
-	21, // 12: continuum.plugin.v1.GetSeasonsRequest.provider_ids:type_name -> google.protobuf.Struct
-	7,  // 13: continuum.plugin.v1.GetSeasonsResponse.seasons:type_name -> continuum.plugin.v1.SeasonRecord
-	21, // 14: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
-	21, // 15: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
-	21, // 16: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
-	21, // 17: continuum.plugin.v1.GetEpisodesRequest.provider_ids:type_name -> google.protobuf.Struct
-	10, // 18: continuum.plugin.v1.GetEpisodesResponse.episodes:type_name -> continuum.plugin.v1.EpisodeRecord
-	21, // 19: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
-	21, // 20: continuum.plugin.v1.GetImagesRequest.provider_ids:type_name -> google.protobuf.Struct
-	13, // 21: continuum.plugin.v1.GetImagesResponse.images:type_name -> continuum.plugin.v1.ImageRecord
-	20, // 22: continuum.plugin.v1.ResolveImageURLsResponse.urls:type_name -> continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
-	1,  // 23: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
-	5,  // 24: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
-	8,  // 25: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
-	11, // 26: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
-	14, // 27: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
-	16, // 28: continuum.plugin.v1.MetadataProvider.ResolveImageURL:input_type -> continuum.plugin.v1.ResolveImageURLRequest
-	18, // 29: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:input_type -> continuum.plugin.v1.ResolveImageURLsRequest
-	2,  // 30: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
-	6,  // 31: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
-	9,  // 32: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
-	12, // 33: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
-	15, // 34: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
-	17, // 35: continuum.plugin.v1.MetadataProvider.ResolveImageURL:output_type -> continuum.plugin.v1.ResolveImageURLResponse
-	19, // 36: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:output_type -> continuum.plugin.v1.ResolveImageURLsResponse
-	30, // [30:37] is the sub-list for method output_type
-	23, // [23:30] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	24, // 10: continuum.plugin.v1.GetPersonDetailRequest.provider_ids:type_name -> google.protobuf.Struct
+	24, // 11: continuum.plugin.v1.PersonDetailRecord.provider_ids:type_name -> google.protobuf.Struct
+	8,  // 12: continuum.plugin.v1.GetPersonDetailResponse.person:type_name -> continuum.plugin.v1.PersonDetailRecord
+	24, // 13: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
+	24, // 14: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
+	24, // 15: continuum.plugin.v1.GetSeasonsRequest.provider_ids:type_name -> google.protobuf.Struct
+	10, // 16: continuum.plugin.v1.GetSeasonsResponse.seasons:type_name -> continuum.plugin.v1.SeasonRecord
+	24, // 17: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
+	24, // 18: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
+	24, // 19: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
+	24, // 20: continuum.plugin.v1.GetEpisodesRequest.provider_ids:type_name -> google.protobuf.Struct
+	13, // 21: continuum.plugin.v1.GetEpisodesResponse.episodes:type_name -> continuum.plugin.v1.EpisodeRecord
+	24, // 22: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
+	24, // 23: continuum.plugin.v1.GetImagesRequest.provider_ids:type_name -> google.protobuf.Struct
+	16, // 24: continuum.plugin.v1.GetImagesResponse.images:type_name -> continuum.plugin.v1.ImageRecord
+	23, // 25: continuum.plugin.v1.ResolveImageURLsResponse.urls:type_name -> continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
+	1,  // 26: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
+	5,  // 27: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
+	7,  // 28: continuum.plugin.v1.MetadataProvider.GetPersonDetail:input_type -> continuum.plugin.v1.GetPersonDetailRequest
+	11, // 29: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
+	14, // 30: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
+	17, // 31: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
+	19, // 32: continuum.plugin.v1.MetadataProvider.ResolveImageURL:input_type -> continuum.plugin.v1.ResolveImageURLRequest
+	21, // 33: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:input_type -> continuum.plugin.v1.ResolveImageURLsRequest
+	2,  // 34: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
+	6,  // 35: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
+	9,  // 36: continuum.plugin.v1.MetadataProvider.GetPersonDetail:output_type -> continuum.plugin.v1.GetPersonDetailResponse
+	12, // 37: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
+	15, // 38: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
+	18, // 39: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
+	20, // 40: continuum.plugin.v1.MetadataProvider.ResolveImageURL:output_type -> continuum.plugin.v1.ResolveImageURLResponse
+	22, // 41: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:output_type -> continuum.plugin.v1.ResolveImageURLsResponse
+	34, // [34:42] is the sub-list for method output_type
+	26, // [26:34] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_continuum_plugin_v1_metadata_provider_proto_init() }
@@ -1799,7 +2042,7 @@ func file_continuum_plugin_v1_metadata_provider_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_continuum_plugin_v1_metadata_provider_proto_rawDesc), len(file_continuum_plugin_v1_metadata_provider_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
