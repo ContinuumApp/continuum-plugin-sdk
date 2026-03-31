@@ -381,6 +381,7 @@ type MetadataItem struct {
 	FirstAirDate      string           `protobuf:"bytes,26,opt,name=first_air_date,json=firstAirDate,proto3" json:"first_air_date,omitempty"`
 	LastAirDate       string           `protobuf:"bytes,27,opt,name=last_air_date,json=lastAirDate,proto3" json:"last_air_date,omitempty"`
 	People            []*PersonRecord  `protobuf:"bytes,28,rep,name=people,proto3" json:"people,omitempty"`
+	ReleaseDate       string           `protobuf:"bytes,29,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -612,10 +613,20 @@ func (x *MetadataItem) GetPeople() []*PersonRecord {
 	return nil
 }
 
+func (x *MetadataItem) GetReleaseDate() string {
+	if x != nil {
+		return x.ReleaseDate
+	}
+	return ""
+}
+
 type GetMetadataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProviderId    string                 `protobuf:"bytes,1,opt,name=provider_id,json=providerId,proto3" json:"provider_id,omitempty"`
 	ItemType      string                 `protobuf:"bytes,2,opt,name=item_type,json=itemType,proto3" json:"item_type,omitempty"`
+	ProviderIds   *structpb.Struct       `protobuf:"bytes,3,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language      string                 `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
+	FilePath      string                 `protobuf:"bytes,5,opt,name=file_path,json=filePath,proto3" json:"file_path,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -660,6 +671,27 @@ func (x *GetMetadataRequest) GetProviderId() string {
 func (x *GetMetadataRequest) GetItemType() string {
 	if x != nil {
 		return x.ItemType
+	}
+	return ""
+}
+
+func (x *GetMetadataRequest) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
+}
+
+func (x *GetMetadataRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+func (x *GetMetadataRequest) GetFilePath() string {
+	if x != nil {
+		return x.FilePath
 	}
 	return ""
 }
@@ -811,6 +843,7 @@ func (x *SeasonRecord) GetProviderIds() *structpb.Struct {
 type GetSeasonsRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	SeriesProviderId string                 `protobuf:"bytes,1,opt,name=series_provider_id,json=seriesProviderId,proto3" json:"series_provider_id,omitempty"`
+	ProviderIds      *structpb.Struct       `protobuf:"bytes,2,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -850,6 +883,13 @@ func (x *GetSeasonsRequest) GetSeriesProviderId() string {
 		return x.SeriesProviderId
 	}
 	return ""
+}
+
+func (x *GetSeasonsRequest) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
 }
 
 type GetSeasonsResponse struct {
@@ -1024,6 +1064,7 @@ type GetEpisodesRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	SeriesProviderId string                 `protobuf:"bytes,1,opt,name=series_provider_id,json=seriesProviderId,proto3" json:"series_provider_id,omitempty"`
 	SeasonNumber     int32                  `protobuf:"varint,2,opt,name=season_number,json=seasonNumber,proto3" json:"season_number,omitempty"`
+	ProviderIds      *structpb.Struct       `protobuf:"bytes,3,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1070,6 +1111,13 @@ func (x *GetEpisodesRequest) GetSeasonNumber() int32 {
 		return x.SeasonNumber
 	}
 	return 0
+}
+
+func (x *GetEpisodesRequest) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
 }
 
 type GetEpisodesResponse struct {
@@ -1204,6 +1252,8 @@ type GetImagesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProviderId    string                 `protobuf:"bytes,1,opt,name=provider_id,json=providerId,proto3" json:"provider_id,omitempty"`
 	ItemType      string                 `protobuf:"bytes,2,opt,name=item_type,json=itemType,proto3" json:"item_type,omitempty"`
+	ProviderIds   *structpb.Struct       `protobuf:"bytes,3,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language      string                 `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1248,6 +1298,20 @@ func (x *GetImagesRequest) GetProviderId() string {
 func (x *GetImagesRequest) GetItemType() string {
 	if x != nil {
 		return x.ItemType
+	}
+	return ""
+}
+
+func (x *GetImagesRequest) GetProviderIds() *structpb.Struct {
+	if x != nil {
+		return x.ProviderIds
+	}
+	return nil
+}
+
+func (x *GetImagesRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
 	}
 	return ""
 }
@@ -1523,7 +1587,7 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\n" +
 	"photo_path\x18\t \x01(\tR\tphotoPath\x12'\n" +
 	"\x0fphoto_thumbhash\x18\n" +
-	" \x01(\tR\x0ephotoThumbhash\"\x97\b\n" +
+	" \x01(\tR\x0ephotoThumbhash\"\xba\b\n" +
 	"\fMetadataItem\x12\x1f\n" +
 	"\vprovider_id\x18\x01 \x01(\tR\n" +
 	"providerId\x12\x1b\n" +
@@ -1556,11 +1620,15 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\fseason_count\x18\x19 \x01(\x05R\vseasonCount\x12$\n" +
 	"\x0efirst_air_date\x18\x1a \x01(\tR\ffirstAirDate\x12\"\n" +
 	"\rlast_air_date\x18\x1b \x01(\tR\vlastAirDate\x129\n" +
-	"\x06people\x18\x1c \x03(\v2!.continuum.plugin.v1.PersonRecordR\x06people\"R\n" +
+	"\x06people\x18\x1c \x03(\v2!.continuum.plugin.v1.PersonRecordR\x06people\x12!\n" +
+	"\frelease_date\x18\x1d \x01(\tR\vreleaseDate\"\xc7\x01\n" +
 	"\x12GetMetadataRequest\x12\x1f\n" +
 	"\vprovider_id\x18\x01 \x01(\tR\n" +
 	"providerId\x12\x1b\n" +
-	"\titem_type\x18\x02 \x01(\tR\bitemType\"L\n" +
+	"\titem_type\x18\x02 \x01(\tR\bitemType\x12:\n" +
+	"\fprovider_ids\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x04 \x01(\tR\blanguage\x12\x1b\n" +
+	"\tfile_path\x18\x05 \x01(\tR\bfilePath\"L\n" +
 	"\x13GetMetadataResponse\x125\n" +
 	"\x04item\x18\x01 \x01(\v2!.continuum.plugin.v1.MetadataItemR\x04item\"\xb3\x02\n" +
 	"\fSeasonRecord\x12#\n" +
@@ -1573,9 +1641,10 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12\x1f\n" +
 	"\vprovider_id\x18\a \x01(\tR\n" +
 	"providerId\x12:\n" +
-	"\fprovider_ids\x18\b \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"A\n" +
+	"\fprovider_ids\x18\b \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"}\n" +
 	"\x11GetSeasonsRequest\x12,\n" +
-	"\x12series_provider_id\x18\x01 \x01(\tR\x10seriesProviderId\"Q\n" +
+	"\x12series_provider_id\x18\x01 \x01(\tR\x10seriesProviderId\x12:\n" +
+	"\fprovider_ids\x18\x02 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"Q\n" +
 	"\x12GetSeasonsResponse\x12;\n" +
 	"\aseasons\x18\x01 \x03(\v2!.continuum.plugin.v1.SeasonRecordR\aseasons\"\xa6\x03\n" +
 	"\rEpisodeRecord\x12#\n" +
@@ -1592,10 +1661,11 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\bmetadata\x18\n" +
 	" \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12\x1f\n" +
 	"\vprovider_id\x18\v \x01(\tR\n" +
-	"providerId\"g\n" +
+	"providerId\"\xa3\x01\n" +
 	"\x12GetEpisodesRequest\x12,\n" +
 	"\x12series_provider_id\x18\x01 \x01(\tR\x10seriesProviderId\x12#\n" +
-	"\rseason_number\x18\x02 \x01(\x05R\fseasonNumber\"U\n" +
+	"\rseason_number\x18\x02 \x01(\x05R\fseasonNumber\x12:\n" +
+	"\fprovider_ids\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"U\n" +
 	"\x13GetEpisodesResponse\x12>\n" +
 	"\bepisodes\x18\x01 \x03(\v2\".continuum.plugin.v1.EpisodeRecordR\bepisodes\"\xb2\x01\n" +
 	"\vImageRecord\x12\x12\n" +
@@ -1604,11 +1674,13 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\blanguage\x18\x03 \x01(\tR\blanguage\x12\x14\n" +
 	"\x05width\x18\x04 \x01(\x05R\x05width\x12\x16\n" +
 	"\x06height\x18\x05 \x01(\x05R\x06height\x123\n" +
-	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructR\bmetadata\"P\n" +
+	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructR\bmetadata\"\xa8\x01\n" +
 	"\x10GetImagesRequest\x12\x1f\n" +
 	"\vprovider_id\x18\x01 \x01(\tR\n" +
 	"providerId\x12\x1b\n" +
-	"\titem_type\x18\x02 \x01(\tR\bitemType\"M\n" +
+	"\titem_type\x18\x02 \x01(\tR\bitemType\x12:\n" +
+	"\fprovider_ids\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x04 \x01(\tR\blanguage\"M\n" +
 	"\x11GetImagesResponse\x128\n" +
 	"\x06images\x18\x01 \x03(\v2 .continuum.plugin.v1.ImageRecordR\x06images\"F\n" +
 	"\x16ResolveImageURLRequest\x12\x12\n" +
@@ -1680,36 +1752,40 @@ var file_continuum_plugin_v1_metadata_provider_proto_depIdxs = []int32{
 	21, // 5: continuum.plugin.v1.MetadataItem.legacy_people:type_name -> google.protobuf.Struct
 	21, // 6: continuum.plugin.v1.MetadataItem.metadata:type_name -> google.protobuf.Struct
 	3,  // 7: continuum.plugin.v1.MetadataItem.people:type_name -> continuum.plugin.v1.PersonRecord
-	4,  // 8: continuum.plugin.v1.GetMetadataResponse.item:type_name -> continuum.plugin.v1.MetadataItem
-	21, // 9: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
-	21, // 10: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
-	7,  // 11: continuum.plugin.v1.GetSeasonsResponse.seasons:type_name -> continuum.plugin.v1.SeasonRecord
-	21, // 12: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
-	21, // 13: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
-	21, // 14: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
-	10, // 15: continuum.plugin.v1.GetEpisodesResponse.episodes:type_name -> continuum.plugin.v1.EpisodeRecord
-	21, // 16: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
-	13, // 17: continuum.plugin.v1.GetImagesResponse.images:type_name -> continuum.plugin.v1.ImageRecord
-	20, // 18: continuum.plugin.v1.ResolveImageURLsResponse.urls:type_name -> continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
-	1,  // 19: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
-	5,  // 20: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
-	8,  // 21: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
-	11, // 22: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
-	14, // 23: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
-	16, // 24: continuum.plugin.v1.MetadataProvider.ResolveImageURL:input_type -> continuum.plugin.v1.ResolveImageURLRequest
-	18, // 25: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:input_type -> continuum.plugin.v1.ResolveImageURLsRequest
-	2,  // 26: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
-	6,  // 27: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
-	9,  // 28: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
-	12, // 29: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
-	15, // 30: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
-	17, // 31: continuum.plugin.v1.MetadataProvider.ResolveImageURL:output_type -> continuum.plugin.v1.ResolveImageURLResponse
-	19, // 32: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:output_type -> continuum.plugin.v1.ResolveImageURLsResponse
-	26, // [26:33] is the sub-list for method output_type
-	19, // [19:26] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	21, // 8: continuum.plugin.v1.GetMetadataRequest.provider_ids:type_name -> google.protobuf.Struct
+	4,  // 9: continuum.plugin.v1.GetMetadataResponse.item:type_name -> continuum.plugin.v1.MetadataItem
+	21, // 10: continuum.plugin.v1.SeasonRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 11: continuum.plugin.v1.SeasonRecord.provider_ids:type_name -> google.protobuf.Struct
+	21, // 12: continuum.plugin.v1.GetSeasonsRequest.provider_ids:type_name -> google.protobuf.Struct
+	7,  // 13: continuum.plugin.v1.GetSeasonsResponse.seasons:type_name -> continuum.plugin.v1.SeasonRecord
+	21, // 14: continuum.plugin.v1.EpisodeRecord.provider_ids:type_name -> google.protobuf.Struct
+	21, // 15: continuum.plugin.v1.EpisodeRecord.ratings:type_name -> google.protobuf.Struct
+	21, // 16: continuum.plugin.v1.EpisodeRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 17: continuum.plugin.v1.GetEpisodesRequest.provider_ids:type_name -> google.protobuf.Struct
+	10, // 18: continuum.plugin.v1.GetEpisodesResponse.episodes:type_name -> continuum.plugin.v1.EpisodeRecord
+	21, // 19: continuum.plugin.v1.ImageRecord.metadata:type_name -> google.protobuf.Struct
+	21, // 20: continuum.plugin.v1.GetImagesRequest.provider_ids:type_name -> google.protobuf.Struct
+	13, // 21: continuum.plugin.v1.GetImagesResponse.images:type_name -> continuum.plugin.v1.ImageRecord
+	20, // 22: continuum.plugin.v1.ResolveImageURLsResponse.urls:type_name -> continuum.plugin.v1.ResolveImageURLsResponse.UrlsEntry
+	1,  // 23: continuum.plugin.v1.MetadataProvider.Search:input_type -> continuum.plugin.v1.SearchMetadataRequest
+	5,  // 24: continuum.plugin.v1.MetadataProvider.GetMetadata:input_type -> continuum.plugin.v1.GetMetadataRequest
+	8,  // 25: continuum.plugin.v1.MetadataProvider.GetSeasons:input_type -> continuum.plugin.v1.GetSeasonsRequest
+	11, // 26: continuum.plugin.v1.MetadataProvider.GetEpisodes:input_type -> continuum.plugin.v1.GetEpisodesRequest
+	14, // 27: continuum.plugin.v1.MetadataProvider.GetImages:input_type -> continuum.plugin.v1.GetImagesRequest
+	16, // 28: continuum.plugin.v1.MetadataProvider.ResolveImageURL:input_type -> continuum.plugin.v1.ResolveImageURLRequest
+	18, // 29: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:input_type -> continuum.plugin.v1.ResolveImageURLsRequest
+	2,  // 30: continuum.plugin.v1.MetadataProvider.Search:output_type -> continuum.plugin.v1.SearchMetadataResponse
+	6,  // 31: continuum.plugin.v1.MetadataProvider.GetMetadata:output_type -> continuum.plugin.v1.GetMetadataResponse
+	9,  // 32: continuum.plugin.v1.MetadataProvider.GetSeasons:output_type -> continuum.plugin.v1.GetSeasonsResponse
+	12, // 33: continuum.plugin.v1.MetadataProvider.GetEpisodes:output_type -> continuum.plugin.v1.GetEpisodesResponse
+	15, // 34: continuum.plugin.v1.MetadataProvider.GetImages:output_type -> continuum.plugin.v1.GetImagesResponse
+	17, // 35: continuum.plugin.v1.MetadataProvider.ResolveImageURL:output_type -> continuum.plugin.v1.ResolveImageURLResponse
+	19, // 36: continuum.plugin.v1.MetadataProvider.ResolveImageURLs:output_type -> continuum.plugin.v1.ResolveImageURLsResponse
+	30, // [30:37] is the sub-list for method output_type
+	23, // [23:30] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_continuum_plugin_v1_metadata_provider_proto_init() }

@@ -80,11 +80,15 @@ message MetadataItem {
   string first_air_date = 26;
   string last_air_date = 27;
   repeated PersonRecord people = 28;
+  string release_date = 29;
 }
 
 message GetMetadataRequest {
   string provider_id = 1;
   string item_type = 2;
+  google.protobuf.Struct provider_ids = 3;
+  string language = 4;
+  string file_path = 5;
 }
 
 message GetMetadataResponse {
@@ -104,6 +108,7 @@ message SeasonRecord {
 
 message GetSeasonsRequest {
   string series_provider_id = 1;
+  google.protobuf.Struct provider_ids = 2;
 }
 
 message GetSeasonsResponse {
@@ -127,6 +132,7 @@ message EpisodeRecord {
 message GetEpisodesRequest {
   string series_provider_id = 1;
   int32 season_number = 2;
+  google.protobuf.Struct provider_ids = 3;
 }
 
 message GetEpisodesResponse {
@@ -145,6 +151,8 @@ message ImageRecord {
 message GetImagesRequest {
   string provider_id = 1;
   string item_type = 2;
+  google.protobuf.Struct provider_ids = 3;
+  string language = 4;
 }
 
 message GetImagesResponse {
