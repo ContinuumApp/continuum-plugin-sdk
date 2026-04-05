@@ -128,6 +128,7 @@ type SearchMetadataRequest struct {
 	ItemType      string                 `protobuf:"bytes,2,opt,name=item_type,json=itemType,proto3" json:"item_type,omitempty"`
 	Year          int32                  `protobuf:"varint,3,opt,name=year,proto3" json:"year,omitempty"`
 	ProviderIds   *structpb.Struct       `protobuf:"bytes,4,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language      string                 `protobuf:"bytes,5,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -188,6 +189,13 @@ func (x *SearchMetadataRequest) GetProviderIds() *structpb.Struct {
 		return x.ProviderIds
 	}
 	return nil
+}
+
+func (x *SearchMetadataRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
 }
 
 type SearchMetadataResponse struct {
@@ -1056,6 +1064,7 @@ type GetSeasonsRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	SeriesProviderId string                 `protobuf:"bytes,1,opt,name=series_provider_id,json=seriesProviderId,proto3" json:"series_provider_id,omitempty"`
 	ProviderIds      *structpb.Struct       `protobuf:"bytes,2,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language         string                 `protobuf:"bytes,3,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1102,6 +1111,13 @@ func (x *GetSeasonsRequest) GetProviderIds() *structpb.Struct {
 		return x.ProviderIds
 	}
 	return nil
+}
+
+func (x *GetSeasonsRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
 }
 
 type GetSeasonsResponse struct {
@@ -1277,6 +1293,7 @@ type GetEpisodesRequest struct {
 	SeriesProviderId string                 `protobuf:"bytes,1,opt,name=series_provider_id,json=seriesProviderId,proto3" json:"series_provider_id,omitempty"`
 	SeasonNumber     int32                  `protobuf:"varint,2,opt,name=season_number,json=seasonNumber,proto3" json:"season_number,omitempty"`
 	ProviderIds      *structpb.Struct       `protobuf:"bytes,3,opt,name=provider_ids,json=providerIds,proto3" json:"provider_ids,omitempty"`
+	Language         string                 `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1330,6 +1347,13 @@ func (x *GetEpisodesRequest) GetProviderIds() *structpb.Struct {
 		return x.ProviderIds
 	}
 	return nil
+}
+
+func (x *GetEpisodesRequest) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
 }
 
 type GetEpisodesResponse struct {
@@ -1778,12 +1802,13 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\x04year\x18\x05 \x01(\x05R\x04year\x12\x1a\n" +
 	"\boverview\x18\x06 \x01(\tR\boverview\x12:\n" +
 	"\fprovider_ids\x18\a \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1b\n" +
-	"\timage_url\x18\b \x01(\tR\bimageUrl\"\x9a\x01\n" +
+	"\timage_url\x18\b \x01(\tR\bimageUrl\"\xb6\x01\n" +
 	"\x15SearchMetadataRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1b\n" +
 	"\titem_type\x18\x02 \x01(\tR\bitemType\x12\x12\n" +
 	"\x04year\x18\x03 \x01(\x05R\x04year\x12:\n" +
-	"\fprovider_ids\x18\x04 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"]\n" +
+	"\fprovider_ids\x18\x04 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x05 \x01(\tR\blanguage\"]\n" +
 	"\x16SearchMetadataResponse\x12C\n" +
 	"\aresults\x18\x01 \x03(\v2).continuum.plugin.v1.ProviderSearchResultR\aresults\"\xa3\x02\n" +
 	"\fPersonRecord\x12\x12\n" +
@@ -1875,10 +1900,11 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\bmetadata\x18\x06 \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12\x1f\n" +
 	"\vprovider_id\x18\a \x01(\tR\n" +
 	"providerId\x12:\n" +
-	"\fprovider_ids\x18\b \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"}\n" +
+	"\fprovider_ids\x18\b \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"\x99\x01\n" +
 	"\x11GetSeasonsRequest\x12,\n" +
 	"\x12series_provider_id\x18\x01 \x01(\tR\x10seriesProviderId\x12:\n" +
-	"\fprovider_ids\x18\x02 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"Q\n" +
+	"\fprovider_ids\x18\x02 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x03 \x01(\tR\blanguage\"Q\n" +
 	"\x12GetSeasonsResponse\x12;\n" +
 	"\aseasons\x18\x01 \x03(\v2!.continuum.plugin.v1.SeasonRecordR\aseasons\"\xa6\x03\n" +
 	"\rEpisodeRecord\x12#\n" +
@@ -1895,11 +1921,12 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\bmetadata\x18\n" +
 	" \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12\x1f\n" +
 	"\vprovider_id\x18\v \x01(\tR\n" +
-	"providerId\"\xa3\x01\n" +
+	"providerId\"\xbf\x01\n" +
 	"\x12GetEpisodesRequest\x12,\n" +
 	"\x12series_provider_id\x18\x01 \x01(\tR\x10seriesProviderId\x12#\n" +
 	"\rseason_number\x18\x02 \x01(\x05R\fseasonNumber\x12:\n" +
-	"\fprovider_ids\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\"U\n" +
+	"\fprovider_ids\x18\x03 \x01(\v2\x17.google.protobuf.StructR\vproviderIds\x12\x1a\n" +
+	"\blanguage\x18\x04 \x01(\tR\blanguage\"U\n" +
 	"\x13GetEpisodesResponse\x12>\n" +
 	"\bepisodes\x18\x01 \x03(\v2\".continuum.plugin.v1.EpisodeRecordR\bepisodes\"\xb2\x01\n" +
 	"\vImageRecord\x12\x12\n" +

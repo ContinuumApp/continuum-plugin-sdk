@@ -48,6 +48,21 @@ func TestMetadataProviderRequestDescriptors_IncludeProviderContext(t *testing.T)
 			fieldName: "language",
 			message:   &GetImagesRequest{},
 		},
+		{
+			name:      "SearchMetadataRequest language",
+			fieldName: "language",
+			message:   &SearchMetadataRequest{},
+		},
+		{
+			name:      "GetSeasonsRequest language",
+			fieldName: "language",
+			message:   &GetSeasonsRequest{},
+		},
+		{
+			name:      "GetEpisodesRequest language",
+			fieldName: "language",
+			message:   &GetEpisodesRequest{},
+		},
 	}
 
 	for _, tt := range tests {

@@ -33,6 +33,7 @@ message SearchMetadataRequest {
   string item_type = 2;
   int32 year = 3;
   google.protobuf.Struct provider_ids = 4;
+  string language = 5;
 }
 
 message SearchMetadataResponse {
@@ -132,6 +133,7 @@ message SeasonRecord {
 message GetSeasonsRequest {
   string series_provider_id = 1;
   google.protobuf.Struct provider_ids = 2;
+  string language = 3;
 }
 
 message GetSeasonsResponse {
@@ -156,6 +158,7 @@ message GetEpisodesRequest {
   string series_provider_id = 1;
   int32 season_number = 2;
   google.protobuf.Struct provider_ids = 3;
+  string language = 4;
 }
 
 message GetEpisodesResponse {
