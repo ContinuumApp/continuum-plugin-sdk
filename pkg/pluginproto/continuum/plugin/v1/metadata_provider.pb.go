@@ -390,6 +390,7 @@ type MetadataItem struct {
 	LastAirDate       string           `protobuf:"bytes,27,opt,name=last_air_date,json=lastAirDate,proto3" json:"last_air_date,omitempty"`
 	People            []*PersonRecord  `protobuf:"bytes,28,rep,name=people,proto3" json:"people,omitempty"`
 	ReleaseDate       string           `protobuf:"bytes,29,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
+	AirTime           string           `protobuf:"bytes,30,opt,name=air_time,json=airTime,proto3" json:"air_time,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -624,6 +625,13 @@ func (x *MetadataItem) GetPeople() []*PersonRecord {
 func (x *MetadataItem) GetReleaseDate() string {
 	if x != nil {
 		return x.ReleaseDate
+	}
+	return ""
+}
+
+func (x *MetadataItem) GetAirTime() string {
+	if x != nil {
+		return x.AirTime
 	}
 	return ""
 }
@@ -1824,7 +1832,7 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\n" +
 	"photo_path\x18\t \x01(\tR\tphotoPath\x12'\n" +
 	"\x0fphoto_thumbhash\x18\n" +
-	" \x01(\tR\x0ephotoThumbhash\"\xba\b\n" +
+	" \x01(\tR\x0ephotoThumbhash\"\xd5\b\n" +
 	"\fMetadataItem\x12\x1f\n" +
 	"\vprovider_id\x18\x01 \x01(\tR\n" +
 	"providerId\x12\x1b\n" +
@@ -1858,7 +1866,8 @@ const file_continuum_plugin_v1_metadata_provider_proto_rawDesc = "" +
 	"\x0efirst_air_date\x18\x1a \x01(\tR\ffirstAirDate\x12\"\n" +
 	"\rlast_air_date\x18\x1b \x01(\tR\vlastAirDate\x129\n" +
 	"\x06people\x18\x1c \x03(\v2!.continuum.plugin.v1.PersonRecordR\x06people\x12!\n" +
-	"\frelease_date\x18\x1d \x01(\tR\vreleaseDate\"\xc7\x01\n" +
+	"\frelease_date\x18\x1d \x01(\tR\vreleaseDate\x12\x19\n" +
+	"\bair_time\x18\x1e \x01(\tR\aairTime\"\xc7\x01\n" +
 	"\x12GetMetadataRequest\x12\x1f\n" +
 	"\vprovider_id\x18\x01 \x01(\tR\n" +
 	"providerId\x12\x1b\n" +

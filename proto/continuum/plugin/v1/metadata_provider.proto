@@ -83,6 +83,7 @@ message MetadataItem {
   string last_air_date = 27;
   repeated PersonRecord people = 28;
   string release_date = 29;
+  string air_time = 30;
 }
 
 message GetMetadataRequest {
