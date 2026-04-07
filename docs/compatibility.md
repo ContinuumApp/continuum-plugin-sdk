@@ -35,6 +35,12 @@ The compatibility boundary includes:
 - Host installs should reject incompatible API versions before runtime startup.
 - A plugin binary should return the same manifest shape that Continuum installs, except that binaries may compute their checksum dynamically at runtime.
 
+## Metadata Language Compatibility
+
+- For `metadata_provider.v1`, Continuum sends request `language` values in ISO 639-1 form.
+- Plugins own translation from that host value to provider-specific language formats such as BCP 47 or ISO 639-3.
+- Plugins may tolerate region-qualified input for compatibility, but the public Continuum contract does not require region-qualified tags.
+
 ## Go Support
 
 The supported public authoring path today is Go-only.

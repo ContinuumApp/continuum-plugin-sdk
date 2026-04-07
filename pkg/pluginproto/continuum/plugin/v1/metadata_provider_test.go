@@ -74,6 +74,33 @@ func TestMetadataProviderRequestDescriptors_IncludeProviderContext(t *testing.T)
 	}
 }
 
+func TestMetadataProviderRequestLanguageFieldNumbers_AreStable(t *testing.T) {
+	tests := []struct {
+		name   string
+		number protoreflect.FieldNumber
+		msg    protoreflect.ProtoMessage
+	}{
+		{name: "SearchMetadataRequest", number: 5, msg: &SearchMetadataRequest{}},
+		{name: "GetMetadataRequest", number: 4, msg: &GetMetadataRequest{}},
+		{name: "GetPersonDetailRequest", number: 2, msg: &GetPersonDetailRequest{}},
+		{name: "GetSeasonsRequest", number: 3, msg: &GetSeasonsRequest{}},
+		{name: "GetEpisodesRequest", number: 4, msg: &GetEpisodesRequest{}},
+		{name: "GetImagesRequest", number: 4, msg: &GetImagesRequest{}},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			field := tt.msg.ProtoReflect().Descriptor().Fields().ByName("language")
+			if field == nil {
+				t.Fatal("descriptor is missing language")
+			}
+			if field.Number() != tt.number {
+				t.Fatalf("language field number = %d, want %d", field.Number(), tt.number)
+			}
+		})
+	}
+}
+
 func TestMetadataProviderServiceDescriptor_IncludesPersonDetailRPC(t *testing.T) {
 	method := File_continuum_plugin_v1_metadata_provider_proto.Services().
 		ByName("MetadataProvider").

@@ -21,6 +21,16 @@ Public Go SDK for building Continuum plugins.
 - `auth_provider.v1`
 - `http_routes.v1`
 
+## Metadata Language Contract
+
+For `metadata_provider.v1` requests, Continuum sends the `language` field as an
+ISO 639-1 language code such as `en`, `fr`, or `ko`.
+
+Plugins are responsible for translating that host value into whatever format the
+upstream provider expects, such as BCP 47 or ISO 639-3. Plugins may accept
+region-qualified tags defensively, but they must not require them from
+Continuum.
+
 ## Author Workflow
 
 The supported authoring path is Go plugins that:

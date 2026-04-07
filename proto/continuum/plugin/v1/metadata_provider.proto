@@ -33,6 +33,10 @@ message SearchMetadataRequest {
   string item_type = 2;
   int32 year = 3;
   google.protobuf.Struct provider_ids = 4;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 5;
 }
 
@@ -90,6 +94,10 @@ message GetMetadataRequest {
   string provider_id = 1;
   string item_type = 2;
   google.protobuf.Struct provider_ids = 3;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 4;
   string file_path = 5;
 }
@@ -100,6 +108,10 @@ message GetMetadataResponse {
 
 message GetPersonDetailRequest {
   google.protobuf.Struct provider_ids = 1;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 2;
 }
 
@@ -134,6 +146,10 @@ message SeasonRecord {
 message GetSeasonsRequest {
   string series_provider_id = 1;
   google.protobuf.Struct provider_ids = 2;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 3;
 }
 
@@ -159,6 +175,10 @@ message GetEpisodesRequest {
   string series_provider_id = 1;
   int32 season_number = 2;
   google.protobuf.Struct provider_ids = 3;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 4;
 }
 
@@ -179,6 +199,10 @@ message GetImagesRequest {
   string provider_id = 1;
   string item_type = 2;
   google.protobuf.Struct provider_ids = 3;
+  // Continuum sends ISO 639-1 language codes here.
+  // Plugins are responsible for translating that value to the upstream
+  // provider's required language format. Plugins may accept region-qualified
+  // tags defensively, but must not require them from Continuum.
   string language = 4;
 }
 
